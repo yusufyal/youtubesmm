@@ -93,8 +93,10 @@ export default function OrderDetailPage() {
     );
   }
 
-  const progress = order.start_count !== null && order.current_count !== null
-    ? Math.min(100, Math.round(((order.current_count - order.start_count) / order.quantity) * 100))
+  const startCount = order.start_count ?? 0;
+  const currentCount = order.current_count ?? 0;
+  const progress = order.start_count != null && order.current_count != null
+    ? Math.min(100, Math.round(((currentCount - startCount) / order.quantity) * 100))
     : null;
 
   return (
