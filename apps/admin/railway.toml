@@ -2,18 +2,17 @@
 builder = "nixpacks"
 
 [build.nixpacksPlan.phases.setup]
-nixPkgs = ["nodejs_20"]
+nixPkgs = ["nodejs_20", "nodePackages.pnpm"]
 
 [build.nixpacksPlan.phases.install]
-cmds = ["npm install -g pnpm", "pnpm install"]
+cmds = ["pnpm install"]
 
 [build.nixpacksPlan.phases.build]
 cmds = ["pnpm build"]
 
 [deploy]
 startCommand = "node .next/standalone/server.js"
-healthcheckPath = "/"
-healthcheckTimeout = 300
 
 [deploy.env]
 PORT = "3000"
+HOSTNAME = "0.0.0.0"
