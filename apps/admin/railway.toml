@@ -2,13 +2,13 @@
 builder = "nixpacks"
 
 [build.nixpacksPlan.phases.setup]
-nixPkgs = ["nodejs_20", "nodePackages.pnpm"]
+nixPkgs = ["nodejs_20"]
 
 [build.nixpacksPlan.phases.install]
-cmds = ["pnpm install"]
+cmds = ["npm install"]
 
 [build.nixpacksPlan.phases.build]
-cmds = ["pnpm build"]
+cmds = ["npm run build", "cp -r public .next/standalone/ || true", "cp -r .next/static .next/standalone/.next/ || true"]
 
 [deploy]
 startCommand = "node .next/standalone/server.js"

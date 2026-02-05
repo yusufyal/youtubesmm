@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import adminApi from '@/lib/api';
-import type { Post } from '@aynyoutube/types';
+import type { Post } from '@/types';
 
 const statusColors: Record<string, 'default' | 'secondary' | 'success' | 'warning'> = {
   draft: 'secondary',

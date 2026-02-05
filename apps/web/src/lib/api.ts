@@ -12,7 +12,7 @@ import type {
   PaginatedResponse,
   AuthResponse,
   ApiError,
-} from '@aynyoutube/types';
+} from '@/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8888/api';
 const API_BASE = API_BASE_URL.replace('/api', '');

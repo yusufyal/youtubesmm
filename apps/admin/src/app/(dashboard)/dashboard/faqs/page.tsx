@@ -25,7 +25,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import adminApi from '@/lib/api';
-import type { FAQ } from '@aynyoutube/types';
+import type { FAQ } from '@/types';
 
 const categories = [
   'General',

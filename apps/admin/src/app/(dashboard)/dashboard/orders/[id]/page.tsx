@@ -37,7 +37,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import adminApi from '@/lib/api';
-import type { Order } from '@aynyoutube/types';
+import type { Order } from '@/types';
 
 const statusColors: Record<string, 'default' | 'secondary' | 'destructive' | 'success' | 'warning'> = {
   pending: 'secondary',

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Plus, Edit, Mail, Trash2, Search } from 'lucide-react';
-import type { User, PaginatedResponse } from '@aynyoutube/types';
+import type { User, PaginatedResponse } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

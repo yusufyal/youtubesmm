@@ -3,7 +3,6 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-  transpilePackages: ['@aynyoutube/types', '@aynyoutube/config'],
 };
 
 export default nextConfig;

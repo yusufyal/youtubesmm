@@ -25,7 +25,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import adminApi from '@/lib/api';
-import type { Package, Service, Provider } from '@aynyoutube/types';
+import type { Package, Service, Provider } from '@/types';
 
 export default function PackagesPage() {
   const [packages, setPackages] = useState<Package[]>([]);

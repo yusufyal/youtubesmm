@@ -17,7 +17,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import adminApi from '@/lib/api';
-import type { Provider } from '@aynyoutube/types';
+import type { Provider } from '@/types';
 
 export default function ProvidersPage() {
   const [providers, setProviders] = useState<Provider[]>([]);
