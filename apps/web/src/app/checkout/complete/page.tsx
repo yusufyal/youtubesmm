@@ -14,13 +14,13 @@ export const metadata: Metadata = {
 };
 
 interface CheckoutCompletePageProps {
-  searchParams: { order_id?: string };
+  searchParams: Promise<{ order_id?: string }>;
 }
 
-export default function CheckoutCompletePage({
+export default async function CheckoutCompletePage({
   searchParams,
 }: CheckoutCompletePageProps) {
-  const orderId = searchParams.order_id;
+  const { order_id: orderId } = await searchParams;
 
   return (
     <div className="container flex min-h-[60vh] items-center justify-center py-12">
