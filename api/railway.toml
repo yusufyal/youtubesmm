@@ -2,10 +2,10 @@
 builder = "nixpacks"
 
 [build.nixpacksPlan.phases.setup]
-nixPkgs = ["php83", "php83Extensions.pdo", "php83Extensions.pdo_mysql", "php83Extensions.redis", "php83Extensions.mbstring", "php83Extensions.xml", "php83Extensions.curl", "php83Extensions.zip", "php83Extensions.bcmath", "nodejs_20", "npm-9_x"]
+nixPkgs = ["php83", "php83Packages.composer", "php83Extensions.pdo", "php83Extensions.pdo_mysql", "php83Extensions.redis", "php83Extensions.mbstring", "php83Extensions.xml", "php83Extensions.curl", "php83Extensions.zip", "php83Extensions.bcmath", "php83Extensions.tokenizer", "php83Extensions.fileinfo", "php83Extensions.openssl"]
 
 [build.nixpacksPlan.phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader"]
+cmds = ["composer install --no-dev --optimize-autoloader --no-interaction"]
 
 [build.nixpacksPlan.phases.build]
 cmds = [
