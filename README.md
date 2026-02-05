@@ -117,7 +117,55 @@ See [docs/api-contract.md](docs/api-contract.md) for full API documentation.
 
 ## Deployment
 
-See [docs/deployment.md](docs/deployment.md) for deployment instructions.
+See [docs/deployment.md](docs/deployment.md) for detailed deployment instructions.
+
+### Quick Railway Deployment
+
+1. **Create a new project in Railway**
+
+2. **Add services from GitHub:**
+   - Add MySQL database (Railway plugin)
+   - Add Redis database (Railway plugin)
+   - Add `api` service (set root directory to `api`)
+   - Add `web` service (set root directory to `apps/web`)
+   - Add `admin` service (set root directory to `apps/admin`)
+
+3. **Configure environment variables:**
+
+   **API Service:**
+   ```
+   APP_ENV=production
+   APP_DEBUG=false
+   APP_URL=https://your-api.up.railway.app
+   DB_HOST=${{MySQL.MYSQLHOST}}
+   DB_PORT=${{MySQL.MYSQLPORT}}
+   DB_DATABASE=${{MySQL.MYSQLDATABASE}}
+   DB_USERNAME=${{MySQL.MYSQLUSER}}
+   DB_PASSWORD=${{MySQL.MYSQLPASSWORD}}
+   REDIS_HOST=${{Redis.REDISHOST}}
+   REDIS_PORT=${{Redis.REDISPORT}}
+   REDIS_PASSWORD=${{Redis.REDISPASSWORD}}
+   FRONTEND_URL=https://your-web.up.railway.app
+   ADMIN_URL=https://your-admin.up.railway.app
+   SANCTUM_STATEFUL_DOMAINS=your-web.up.railway.app,your-admin.up.railway.app
+   ```
+
+   **Web Service:**
+   ```
+   NEXT_PUBLIC_API_URL=https://your-api.up.railway.app/api
+   ```
+
+   **Admin Service:**
+   ```
+   NEXT_PUBLIC_API_URL=https://your-api.up.railway.app/api
+   ```
+
+4. **Deploy and generate APP_KEY:**
+   ```bash
+   # After first deploy, run in Railway CLI or console:
+   php artisan key:generate --show
+   # Then add APP_KEY to API environment variables
+   ```
 
 ## Environment Variables
 
