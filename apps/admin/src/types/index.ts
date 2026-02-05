@@ -40,6 +40,7 @@ export interface Service {
 export interface Package {
   id: number;
   service_id: number;
+  service?: Service;
   name: string;
   quantity: number;
   price: number;
