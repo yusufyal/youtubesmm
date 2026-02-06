@@ -12,8 +12,6 @@ cmds = ["npm run build", "cp -r public .next/standalone/public || true", "cp -r 
 
 [deploy]
 startCommand = "cd .next/standalone && node server.js"
-healthcheckPath = "/"
-healthcheckTimeout = 120
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
 
