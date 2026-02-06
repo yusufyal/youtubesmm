@@ -8,13 +8,9 @@ nixPkgs = ["nodejs_20"]
 cmds = ["npm install"]
 
 [build.nixpacksPlan.phases.build]
-cmds = ["npm run build", "cp -r public .next/standalone/public || true", "cp -r .next/static .next/standalone/.next/static || true"]
+cmds = ["npm run build"]
 
 [deploy]
-startCommand = "cd .next/standalone && node server.js"
+startCommand = "npx next start -H 0.0.0.0 -p ${PORT:-8888}"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
-
-[deploy.env]
-PORT = "8888"
-HOSTNAME = "0.0.0.0"
