@@ -16,4 +16,5 @@ restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
 
 [deploy.env]
+PORT = "8888"
 HOSTNAME = "0.0.0.0"
