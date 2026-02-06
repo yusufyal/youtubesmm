@@ -18,7 +18,7 @@ export default async function PrivacyPolicyPage() {
   const page = await getPageContent();
 
   return (
-    <div className="container max-w-3xl py-12">
+    <div className="container max-w-3xl pt-28 pb-12">
       <h1 className="mb-8 text-3xl font-bold">{page?.title || 'Privacy Policy'}</h1>
       {page?.content ? (
         <div

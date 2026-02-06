@@ -33,7 +33,7 @@ export default async function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-red-50 to-white py-16 dark:from-red-950/20 dark:to-background">
+      <section className="bg-gradient-to-b from-red-50 to-white pt-28 pb-16 dark:from-red-950/20 dark:to-background">
         <div className="container text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Blog</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
