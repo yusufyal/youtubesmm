@@ -116,8 +116,7 @@ class AdminApiClient {
 
   // Auth
   async login(email: string, password: string): Promise<AuthResponse> {
-    // Initialize CSRF before login
-    await this.initCsrf();
+    // Skip CSRF for cross-domain API calls - using Bearer token auth
     const response = await this.request<AuthResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),

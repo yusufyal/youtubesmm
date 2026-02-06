@@ -125,8 +125,7 @@ class ApiClient {
 
   // Auth endpoints
   async login(email: string, password: string): Promise<AuthResponse> {
-    // Initialize CSRF before login
-    await this.initCsrf();
+    // Skip CSRF for cross-domain API calls - using Bearer token auth
     return this.request<AuthResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -139,8 +138,7 @@ class ApiClient {
     password: string,
     password_confirmation: string
   ): Promise<AuthResponse> {
-    // Initialize CSRF before register
-    await this.initCsrf();
+    // Skip CSRF for cross-domain API calls - using Bearer token auth
     return this.request<AuthResponse>('/auth/register', {
       method: 'POST',
       body: JSON.stringify({ name, email, password, password_confirmation }),

@@ -11,16 +11,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->api(prepend: [
-            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-        ]);
-
         $middleware->alias([
             'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class,
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         ]);
 
-        $middleware->statefulApi();
+        // Disable CSRF for API routes - using Bearer token auth instead
+        // This is required because frontend and API are on different domains
+        $middleware->validateCsrfTokens(except: [
+            'api/*',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
