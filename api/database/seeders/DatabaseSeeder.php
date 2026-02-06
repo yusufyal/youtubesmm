@@ -19,32 +19,43 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Only seed if no services exist (prevents duplicate data on restart)
+        if (Service::count() > 0) {
+            return;
+        }
+
         // Create admin user
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@ayn.yt',
-            'password' => Hash::make('password'),
-            'role' => 'super_admin',
-            'email_verified_at' => now(),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@ayn.yt'],
+            [
+                'name' => 'Admin',
+                'password' => Hash::make('password'),
+                'role' => 'super_admin',
+                'email_verified_at' => now(),
+            ]
+        );
 
         // Create a sample customer
-        User::create([
-            'name' => 'Test Customer',
-            'email' => 'customer@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'customer',
-            'email_verified_at' => now(),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'customer@example.com'],
+            [
+                'name' => 'Test Customer',
+                'password' => Hash::make('password'),
+                'role' => 'customer',
+                'email_verified_at' => now(),
+            ]
+        );
 
         // Create default provider
-        Provider::create([
-            'name' => 'Default SMM Provider',
-            'slug' => 'generic',
-            'api_url' => 'https://api.example-smm.com',
-            'api_key' => 'your-api-key-here',
-            'active' => true,
-        ]);
+        Provider::firstOrCreate(
+            ['slug' => 'generic'],
+            [
+                'name' => 'Default SMM Provider',
+                'api_url' => 'https://api.example-smm.com',
+                'api_key' => 'your-api-key-here',
+                'active' => true,
+            ]
+        );
 
         // Create YouTube services
         $services = [
@@ -106,28 +117,39 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($services as $serviceData) {
-            $service = Service::create($serviceData);
+            $service = Service::firstOrCreate(
+                ['slug' => $serviceData['slug']],
+                $serviceData
+            );
 
-            // Create packages for each service
-            $this->createPackagesForService($service);
+            // Create packages for each service (only if none exist)
+            if ($service->packages()->count() === 0) {
+                $this->createPackagesForService($service);
+            }
         }
 
-        // Create FAQs
-        $this->createFAQs();
+        // Create FAQs (only if none exist)
+        if (FAQ::count() === 0) {
+            $this->createFAQs();
+        }
 
-        // Create static pages
-        $this->createPages();
+        // Create static pages (only if none exist)
+        if (Page::count() === 0) {
+            $this->createPages();
+        }
 
         // Create blog categories and tags
         $this->createBlogStructure();
 
         // Create sample coupon
-        Coupon::create([
-            'code' => 'WELCOME10',
-            'type' => 'percentage',
-            'value' => 10,
-            'active' => true,
-        ]);
+        Coupon::firstOrCreate(
+            ['code' => 'WELCOME10'],
+            [
+                'type' => 'percentage',
+                'value' => 10,
+                'active' => true,
+            ]
+        );
 
         // Create default settings
         $this->createSettings();
@@ -236,7 +258,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($pages as $pageData) {
-            Page::create($pageData);
+            Page::firstOrCreate(
+                ['slug' => $pageData['slug']],
+                $pageData
+            );
         }
     }
 
@@ -244,19 +269,21 @@ class DatabaseSeeder extends Seeder
     {
         $categories = ['YouTube Growth', 'Monetization', 'Tips & Tricks', 'Industry News'];
         foreach ($categories as $index => $name) {
-            Category::create([
-                'name' => $name,
-                'slug' => \Illuminate\Support\Str::slug($name),
-                'sort_order' => $index,
-            ]);
+            Category::firstOrCreate(
+                ['slug' => \Illuminate\Support\Str::slug($name)],
+                [
+                    'name' => $name,
+                    'sort_order' => $index,
+                ]
+            );
         }
 
         $tags = ['YouTube', 'Growth', 'Subscribers', 'Views', 'Monetization', 'Tips', 'Algorithm', 'SEO'];
         foreach ($tags as $name) {
-            Tag::create([
-                'name' => $name,
-                'slug' => \Illuminate\Support\Str::slug($name),
-            ]);
+            Tag::firstOrCreate(
+                ['slug' => \Illuminate\Support\Str::slug($name)],
+                ['name' => $name]
+            );
         }
     }
 
