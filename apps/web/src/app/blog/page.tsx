@@ -18,7 +18,8 @@ export const metadata: Metadata = {
 
 async function getPosts() {
   try {
-    return await api.getPosts();
+    const response = await api.getPosts();
+    return response;
   } catch (error) {
     console.error('Failed to fetch posts:', error);
     return { data: [], meta: { current_page: 1, last_page: 1, per_page: 12, total: 0, from: 0, to: 0 } };
@@ -26,7 +27,8 @@ async function getPosts() {
 }
 
 export default async function BlogPage() {
-  const { data: posts } = await getPosts();
+  const result = await getPosts();
+  const posts = result?.data ?? [];
 
   return (
     <>

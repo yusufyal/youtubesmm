@@ -38,7 +38,12 @@ interface Package {
   name: string;
   quantity: number;
   price: number;
+  original_price?: number;
+  min_quantity: number;
+  max_quantity: number;
   description?: string;
+  featured?: boolean;
+  estimated_time?: string;
 }
 
 interface Service {

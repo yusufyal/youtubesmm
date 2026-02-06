@@ -47,7 +47,7 @@ export default function PackagesPage() {
     original_price: 0,
     provider_id: '',
     provider_service_id: '',
-    delivery_time: '24-48 hours',
+    estimated_time: '24-48 hours',
     min_quantity: 10,
     max_quantity: 10000,
     description: '',
@@ -87,7 +87,7 @@ export default function PackagesPage() {
       original_price: 0,
       provider_id: '',
       provider_service_id: '',
-      delivery_time: '24-48 hours',
+      estimated_time: '24-48 hours',
       min_quantity: 10,
       max_quantity: 10000,
       description: '',
@@ -108,7 +108,7 @@ export default function PackagesPage() {
       original_price: pkg.original_price || 0,
       provider_id: pkg.provider_id?.toString() || '',
       provider_service_id: pkg.provider_service_id || '',
-      delivery_time: pkg.delivery_time || '24-48 hours',
+      estimated_time: pkg.estimated_time || '24-48 hours',
       min_quantity: pkg.min_quantity || 10,
       max_quantity: pkg.max_quantity || 10000,
       description: pkg.description || '',
@@ -127,14 +127,14 @@ export default function PackagesPage() {
       const dataToSubmit = {
         ...formData,
         service_id: parseInt(formData.service_id),
-        provider_id: formData.provider_id ? parseInt(formData.provider_id) : null,
+        provider_id: formData.provider_id ? parseInt(formData.provider_id) : undefined,
         features: formData.features.split('\n').filter((f) => f.trim()),
       };
 
       if (editingPackage) {
-        await adminApi.updatePackage(editingPackage.id, dataToSubmit);
+        await adminApi.updatePackage(editingPackage.id, dataToSubmit as any);
       } else {
-        await adminApi.createPackage(dataToSubmit);
+        await adminApi.createPackage(dataToSubmit as any);
       }
       setIsDialogOpen(false);
       fetchData();
@@ -263,9 +263,9 @@ export default function PackagesPage() {
                       <td className="py-4 pr-4">
                         <div>
                           <p className="font-medium">{formatCurrency(pkg.price)}</p>
-                          {pkg.original_price > pkg.price && (
+                          {(pkg.original_price ?? 0) > pkg.price && (
                             <p className="text-sm text-muted-foreground line-through">
-                              {formatCurrency(pkg.original_price)}
+                              {formatCurrency(pkg.original_price ?? 0)}
                             </p>
                           )}
                         </div>
@@ -415,11 +415,11 @@ export default function PackagesPage() {
 
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="space-y-2">
-                <Label htmlFor="delivery_time">Delivery Time</Label>
+                <Label htmlFor="estimated_time">Delivery Time</Label>
                 <Input
-                  id="delivery_time"
-                  value={formData.delivery_time}
-                  onChange={(e) => setFormData({ ...formData, delivery_time: e.target.value })}
+                  id="estimated_time"
+                  value={formData.estimated_time}
+                  onChange={(e) => setFormData({ ...formData, estimated_time: e.target.value })}
                   placeholder="e.g., 24-48 hours"
                 />
               </div>

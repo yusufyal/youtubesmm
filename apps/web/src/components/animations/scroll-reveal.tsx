@@ -29,9 +29,10 @@ export function ScrollReveal({
   scale = false,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const marginValue = `-${Math.round(threshold * 100)}px 0px` as const;
   const isInView = useInView(ref, {
     once,
-    margin: `-${Math.round(threshold * 100)}px`,
+    margin: marginValue as any,
   });
 
   const getInitialPosition = () => {

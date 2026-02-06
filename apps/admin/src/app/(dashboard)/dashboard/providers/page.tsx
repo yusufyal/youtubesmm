@@ -31,9 +31,9 @@ export default function ProvidersPage() {
   // Form state
   const [formData, setFormData] = useState({
     name: '',
-    url: '',
+    api_url: '',
     api_key: '',
-    is_active: true,
+    active: true,
   });
 
   useEffect(() => {
@@ -55,9 +55,9 @@ export default function ProvidersPage() {
     setEditingProvider(null);
     setFormData({
       name: '',
-      url: '',
+      api_url: '',
       api_key: '',
-      is_active: true,
+      active: true,
     });
     setIsDialogOpen(true);
   };
@@ -66,9 +66,9 @@ export default function ProvidersPage() {
     setEditingProvider(provider);
     setFormData({
       name: provider.name || '',
-      url: provider.url || '',
+      api_url: provider.api_url || '',
       api_key: '', // Don't show existing API key for security
-      is_active: provider.is_active ?? true,
+      active: provider.active ?? true,
     });
     setIsDialogOpen(true);
   };
@@ -172,11 +172,11 @@ export default function ProvidersPage() {
                     <CardTitle className="text-lg">{provider.name}</CardTitle>
                     <CardDescription className="flex items-center gap-1">
                       <ExternalLink className="h-3 w-3" />
-                      {provider.url}
+                      {provider.api_url}
                     </CardDescription>
                   </div>
-                  <Badge variant={provider.is_active ? 'success' : 'secondary'}>
-                    {provider.is_active ? 'Active' : 'Inactive'}
+                  <Badge variant={provider.active ? 'success' : 'secondary'}>
+                    {provider.active ? 'Active' : 'Inactive'}
                   </Badge>
                 </div>
               </CardHeader>
@@ -284,8 +284,8 @@ export default function ProvidersPage() {
               <Input
                 id="url"
                 type="url"
-                value={formData.url}
-                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                value={formData.api_url}
+                onChange={(e) => setFormData({ ...formData, api_url: e.target.value })}
                 placeholder="https://provider.com/api/v2"
                 required
               />
@@ -307,13 +307,13 @@ export default function ProvidersPage() {
 
             <div className="flex items-center gap-2">
               <Switch
-                id="is_active"
-                checked={formData.is_active}
+                id="active"
+                checked={formData.active}
                 onCheckedChange={(checked) =>
-                  setFormData({ ...formData, is_active: checked })
+                  setFormData({ ...formData, active: checked })
                 }
               />
-              <Label htmlFor="is_active">Active</Label>
+              <Label htmlFor="active">Active</Label>
             </div>
 
             <DialogFooter>

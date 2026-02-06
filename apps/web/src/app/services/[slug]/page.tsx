@@ -144,10 +144,12 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
         'max-snippet': -1,
       },
     },
-    other: {
-      'price': lowestPrice ? `$${lowestPrice}` : undefined,
-      'availability': 'in stock',
-    },
+    ...(lowestPrice && {
+      other: {
+        'price': `$${lowestPrice}`,
+        'availability': 'in stock',
+      },
+    }),
   };
 }
 

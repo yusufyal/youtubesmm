@@ -197,7 +197,7 @@ export function ServicesPageClient({ services }: ServicesPageClientProps) {
                 slug={service.slug}
                 description={service.short_description || service.description}
                 type={service.type}
-                minPrice={service.packages?.[0]?.price}
+                minPrice={service.packages?.[0]?.price ? Number(service.packages[0].price) : undefined}
                 index={index}
               />
             ))}

@@ -51,7 +51,7 @@ export default function FAQsPage() {
     question: '',
     answer: '',
     category: 'General',
-    is_active: true,
+    active: true,
   });
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function FAQsPage() {
       question: '',
       answer: '',
       category: 'General',
-      is_active: true,
+      active: true,
     });
     setIsDialogOpen(true);
   };
@@ -86,7 +86,7 @@ export default function FAQsPage() {
       question: faq.question || '',
       answer: faq.answer || '',
       category: faq.category || 'General',
-      is_active: faq.is_active ?? true,
+      active: faq.active ?? true,
     });
     setIsDialogOpen(true);
   };
@@ -213,8 +213,8 @@ export default function FAQsPage() {
                           </p>
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
-                          <Badge variant={faq.is_active ? 'success' : 'secondary'}>
-                            {faq.is_active ? 'Active' : 'Inactive'}
+                          <Badge variant={faq.active ? 'success' : 'secondary'}>
+                            {faq.active ? 'Active' : 'Inactive'}
                           </Badge>
                           <Button
                             variant="outline"
@@ -295,17 +295,17 @@ export default function FAQsPage() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="is_active">Active</Label>
+                <Label htmlFor="active">Active</Label>
                 <div className="flex items-center gap-2 pt-2">
                   <Switch
-                    id="is_active"
-                    checked={formData.is_active}
+                    id="active"
+                    checked={formData.active}
                     onCheckedChange={(checked) =>
-                      setFormData({ ...formData, is_active: checked })
+                      setFormData({ ...formData, active: checked })
                     }
                   />
                   <span className="text-sm text-muted-foreground">
-                    {formData.is_active ? 'Visible on website' : 'Hidden'}
+                    {formData.active ? 'Visible on website' : 'Hidden'}
                   </span>
                 </div>
               </div>

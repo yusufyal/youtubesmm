@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView, useSpring, useTransform } from 'framer-motion';
+import { motion, useInView, useSpring } from 'framer-motion';
 
 interface AnimatedCounterProps {
   value: number;
@@ -27,19 +27,24 @@ export function AnimatedCounter({
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [displayValue, setDisplayValue] = useState('0');
 
   const springValue = useSpring(0, {
     duration: duration * 1000,
     bounce: 0,
   });
 
-  const displayValue = useTransform(springValue, (latest) => {
-    const formatted = decimals > 0 ? latest.toFixed(decimals) : Math.floor(latest);
-    if (formatNumber && decimals === 0) {
-      return Number(formatted).toLocaleString();
-    }
-    return formatted;
-  });
+  useEffect(() => {
+    const unsubscribe = springValue.on('change', (latest) => {
+      const formatted = decimals > 0 ? latest.toFixed(decimals) : Math.floor(latest);
+      if (formatNumber && decimals === 0) {
+        setDisplayValue(Number(formatted).toLocaleString());
+      } else {
+        setDisplayValue(String(formatted));
+      }
+    });
+    return unsubscribe;
+  }, [springValue, decimals, formatNumber]);
 
   useEffect(() => {
     if (isInView && !hasAnimated) {

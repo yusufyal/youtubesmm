@@ -46,6 +46,7 @@ export interface Package {
   price: number;
   original_price?: number;
   estimated_time: string;
+  description?: string;
   min_quantity: number;
   max_quantity: number;
   refill_eligible: boolean;
@@ -53,6 +54,7 @@ export interface Package {
   provider_id?: number;
   provider_service_id?: string;
   active: boolean;
+  featured?: boolean;
   features?: string[];
   created_at: string;
   updated_at: string;
@@ -219,6 +221,7 @@ export interface Provider {
   api_url: string;
   api_key?: string;
   active: boolean;
+  balance?: number;
   settings?: Record<string, unknown>;
   created_at: string;
   updated_at: string;

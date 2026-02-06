@@ -100,8 +100,8 @@ export default function OrderDetailPage() {
     setIsUpdating(true);
 
     try {
-      await adminApi.updateOrder(order.id, { status: newStatus });
-      setOrder({ ...order, status: newStatus });
+      await adminApi.updateOrder(order.id, { status: newStatus } as any);
+      setOrder({ ...order, status: newStatus as any });
       setIsStatusDialogOpen(false);
     } catch (err: any) {
       alert(err.message || 'Failed to update status');
@@ -319,7 +319,7 @@ export default function OrderDetailPage() {
                 )}
                 Resend to Provider
               </Button>
-              {order.payment_status === 'paid' && order.status !== 'refunded' && (
+              {order.payment_status === 'completed' && order.status !== 'refunded' && (
                 <Button
                   variant="destructive"
                   className="w-full"
@@ -385,10 +385,10 @@ export default function OrderDetailPage() {
                 <p className="text-sm text-muted-foreground">Amount</p>
                 <p className="text-xl font-bold">{formatCurrency(order.amount || 0)}</p>
               </div>
-              {order.coupon_code && (
+              {order.coupon_id && (
                 <div>
                   <p className="text-sm text-muted-foreground">Coupon Used</p>
-                  <code className="px-2 py-1 bg-muted rounded text-sm">{order.coupon_code}</code>
+                  <code className="px-2 py-1 bg-muted rounded text-sm">Coupon #{order.coupon_id}</code>
                 </div>
               )}
             </CardContent>

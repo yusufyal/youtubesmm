@@ -90,7 +90,7 @@ export default function PostsPage() {
       excerpt: post.excerpt || '',
       content: post.content || '',
       status: post.status || 'draft',
-      category: post.category || '',
+      category: typeof post.category === 'string' ? post.category : (post.category?.name || ''),
       seo_title: post.seo_title || '',
       meta_description: post.meta_description || '',
     });
@@ -103,9 +103,9 @@ export default function PostsPage() {
 
     try {
       if (editingPost) {
-        await adminApi.updatePost(editingPost.id, formData);
+        await adminApi.updatePost(editingPost.id, formData as any);
       } else {
-        await adminApi.createPost(formData);
+        await adminApi.createPost(formData as any);
       }
       setIsDialogOpen(false);
       fetchPosts();
@@ -137,7 +137,7 @@ export default function PostsPage() {
   const filteredPosts = posts.filter(
     (post) =>
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.category?.toLowerCase().includes(searchQuery.toLowerCase())
+      (typeof post.category === 'string' ? post.category : post.category?.name || '')?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (isLoading) {
@@ -202,7 +202,7 @@ export default function PostsPage() {
                           <p className="text-sm text-muted-foreground">{post.slug}</p>
                         </div>
                       </td>
-                      <td className="py-4 pr-4">{post.category || '-'}</td>
+                      <td className="py-4 pr-4">{typeof post.category === 'string' ? post.category : (post.category?.name || '-')}</td>
                       <td className="py-4 pr-4">
                         <Badge variant={statusColors[post.status] || 'default'}>
                           {post.status}

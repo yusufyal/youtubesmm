@@ -40,7 +40,7 @@ export default function CouponsPage() {
     code: '',
     type: 'percentage',
     value: 0,
-    min_order_amount: 0,
+    min_order: 0,
     usage_limit: 0,
     expires_at: '',
     active: true,
@@ -67,7 +67,7 @@ export default function CouponsPage() {
       code: generateRandomCode(),
       type: 'percentage',
       value: 10,
-      min_order_amount: 0,
+      min_order: 0,
       usage_limit: 0,
       expires_at: '',
       active: true,
@@ -81,7 +81,7 @@ export default function CouponsPage() {
       code: coupon.code || '',
       type: coupon.type || 'percentage',
       value: coupon.value || 0,
-      min_order_amount: coupon.min_order_amount || 0,
+      min_order: coupon.min_order || 0,
       usage_limit: coupon.usage_limit || 0,
       expires_at: coupon.expires_at ? coupon.expires_at.split('T')[0] : '',
       active: coupon.active ?? true,
@@ -96,14 +96,15 @@ export default function CouponsPage() {
     try {
       const dataToSubmit = {
         ...formData,
+        type: formData.type as 'percentage' | 'fixed',
         usage_limit: formData.usage_limit || null,
         expires_at: formData.expires_at || null,
       };
 
       if (editingCoupon) {
-        await adminApi.updateCoupon(editingCoupon.id, dataToSubmit);
+        await adminApi.updateCoupon(editingCoupon.id, dataToSubmit as any);
       } else {
-        await adminApi.createCoupon(dataToSubmit);
+        await adminApi.createCoupon(dataToSubmit as any);
       }
       setIsDialogOpen(false);
       fetchCoupons();
@@ -205,7 +206,7 @@ export default function CouponsPage() {
                           : formatCurrency(coupon.value)}
                       </td>
                       <td className="px-4 py-3 text-sm">
-                        {coupon.min_order_amount ? formatCurrency(coupon.min_order_amount) : '-'}
+                        {coupon.min_order ? formatCurrency(coupon.min_order) : '-'}
                       </td>
                       <td className="px-4 py-3 text-sm">
                         {coupon.used_count || 0} / {coupon.usage_limit || '∞'}
@@ -310,14 +311,14 @@ export default function CouponsPage() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="min_order_amount">Min Order Amount ($)</Label>
+                <Label htmlFor="min_order">Min Order Amount ($)</Label>
                 <Input
-                  id="min_order_amount"
+                  id="min_order"
                   type="number"
                   step="0.01"
                   min="0"
-                  value={formData.min_order_amount}
-                  onChange={(e) => setFormData({ ...formData, min_order_amount: parseFloat(e.target.value) || 0 })}
+                  value={formData.min_order}
+                  onChange={(e) => setFormData({ ...formData, min_order: parseFloat(e.target.value) || 0 })}
                   placeholder="0 for no minimum"
                 />
               </div>

@@ -9,7 +9,11 @@ interface Package {
   quantity: number;
   price: number;
   original_price?: number;
+  min_quantity: number;
+  max_quantity: number;
   featured?: boolean;
+  estimated_time?: string;
+  description?: string;
 }
 
 interface PackageGridProps {

@@ -79,7 +79,7 @@ export default function DashboardPage() {
       ]);
 
       if (results[0].status === 'fulfilled') {
-        setSummary(results[0].value);
+        setSummary(results[0].value as any);
       }
       if (results[1].status === 'fulfilled') {
         const servicesData = results[1].value;

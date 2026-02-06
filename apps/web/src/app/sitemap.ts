@@ -73,8 +73,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic blog posts
   let blogPages: MetadataRoute.Sitemap = [];
   try {
-    const { data: posts } = await api.getPosts({ page: 1 });
-    blogPages = posts.map((post) => ({
+    const response = await api.getPosts({ page: 1 });
+    const posts = response?.data ?? [];
+    blogPages = posts.map((post: any) => ({
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: new Date(post.updated_at),
       changeFrequency: 'monthly' as const,

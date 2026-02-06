@@ -115,9 +115,9 @@ export default function ServicesPage() {
 
     try {
       if (editingService) {
-        await adminApi.updateService(editingService.id, formData);
+        await adminApi.updateService(editingService.id, formData as any);
       } else {
-        await adminApi.createService(formData);
+        await adminApi.createService(formData as any);
       }
       setIsDialogOpen(false);
       fetchServices();
