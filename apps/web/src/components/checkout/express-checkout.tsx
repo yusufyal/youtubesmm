@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import type { Service, Package } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,14 +10,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency, formatNumber, isValidYouTubeVideoUrl, isValidYouTubeChannelUrl } from '@/lib/utils';
 import api from '@/lib/api';
-import { PaymentDialog } from './payment-dialog';
 
 interface ExpressCheckoutProps {
   service: Service;
 }
 
 export function ExpressCheckout({ service }: ExpressCheckoutProps) {
-  const router = useRouter();
   const packages = service.packages || [];
   
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(
@@ -37,8 +34,6 @@ export function ExpressCheckout({ service }: ExpressCheckoutProps) {
   const [error, setError] = useState<string | null>(null);
   const [linkError, setLinkError] = useState<string | null>(null);
   
-  const [orderId, setOrderId] = useState<number | null>(null);
-  const [showPaymentDialog, setShowPaymentDialog] = useState(false);
 
   // Calculate price
   const calculatePrice = () => {
@@ -144,8 +139,34 @@ export function ExpressCheckout({ service }: ExpressCheckoutProps) {
         guest_email: guestEmail,
       });
 
-      setOrderId(response.order_id);
-      setShowPaymentDialog(true);
+      // Map selected package to external gateway package ID (order_1, order_2, etc.)
+      const packageIndex = packages.findIndex((p) => p.id === selectedPackage!.id);
+      const paymentPackageId = `order_${packageIndex + 1}`;
+
+      const gatewayUrl =
+        process.env.NEXT_PUBLIC_PAYMENT_GATEWAY_URL ||
+        'https://viralreach-production.up.railway.app';
+      const siteUrl =
+        process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+
+      // Redirect to external payment gateway (Stripe Checkout via ViralReach)
+      const paymentRes = await fetch(`${gatewayUrl}/api/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          packageId: paymentPackageId,
+          successUrl: `${siteUrl}/checkout/complete?order_id=${response.order_id}`,
+          cancelUrl: `${siteUrl}/services/${service.slug}`,
+        }),
+      });
+
+      const paymentData = await paymentRes.json();
+
+      if (paymentData.url) {
+        window.location.href = paymentData.url;
+      } else {
+        setError('Payment initialization failed. Please try again.');
+      }
     } catch (err: any) {
       setError(err.message || 'Failed to create order');
     } finally {
@@ -314,15 +335,6 @@ export function ExpressCheckout({ service }: ExpressCheckoutProps) {
         </CardFooter>
       </Card>
 
-      {/* Payment Dialog */}
-      {orderId && (
-        <PaymentDialog
-          open={showPaymentDialog}
-          onOpenChange={setShowPaymentDialog}
-          orderId={orderId}
-          amount={total}
-        />
-      )}
     </>
   );
 }
