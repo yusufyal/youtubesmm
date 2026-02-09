@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 import api from '@/lib/api';
-import { PaymentDialog } from './payment-dialog';
 import { PackageGrid } from './package-grid';
 import { MultiLinkInput } from './multi-link-input';
 import { PriceDisplay } from './price-display';
@@ -78,8 +77,6 @@ export function NewExpressCheckout({ service, colors }: NewExpressCheckoutProps)
   const [isLoading, setIsLoading] = useState(false);
   const [isCouponLoading, setIsCouponLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [orderId, setOrderId] = useState<number | null>(null);
-  const [showPaymentDialog, setShowPaymentDialog] = useState(false);
 
   // Update links when package changes
   useEffect(() => {
@@ -189,9 +186,37 @@ export function NewExpressCheckout({ service, colors }: NewExpressCheckoutProps)
         guest_email: guestEmail,
       };
 
+      // Create order in our backend
       const response = await api.createOrder(orderData);
-      setOrderId(response.order_id);
-      setShowPaymentDialog(true);
+
+      // Map selected package to external gateway package ID (order_1, order_2, etc.)
+      const packageIndex = packages.findIndex((p) => p.id === selectedPackage!.id);
+      const paymentPackageId = `order_${packageIndex + 1}`;
+
+      const gatewayUrl =
+        process.env.NEXT_PUBLIC_PAYMENT_GATEWAY_URL ||
+        'https://viralreach-production.up.railway.app';
+      const siteUrl =
+        process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+
+      // Redirect to external payment gateway (Stripe Checkout via ViralReach)
+      const paymentRes = await fetch(`${gatewayUrl}/api/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          packageId: paymentPackageId,
+          successUrl: `${siteUrl}/checkout/complete?order_id=${response.order_id}`,
+          cancelUrl: `${siteUrl}/services/${service.slug}`,
+        }),
+      });
+
+      const paymentData = await paymentRes.json();
+
+      if (paymentData.url) {
+        window.location.href = paymentData.url;
+      } else {
+        setError('Payment initialization failed. Please try again.');
+      }
     } catch (err: any) {
       setError(err.message || 'Failed to create order');
     } finally {
@@ -414,15 +439,6 @@ export function NewExpressCheckout({ service, colors }: NewExpressCheckoutProps)
         </div>
       </div>
 
-      {/* Payment Dialog */}
-      {orderId && (
-        <PaymentDialog
-          open={showPaymentDialog}
-          onOpenChange={setShowPaymentDialog}
-          orderId={orderId}
-          amount={total}
-        />
-      )}
     </>
   );
 }

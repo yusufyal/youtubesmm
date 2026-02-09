@@ -65,7 +65,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-gray-50 dark:bg-[#0a0a0f] border-t border-gray-200 dark:border-white/5">
+    <footer className="relative bg-white dark:bg-[#0a0a0f] border-t border-gray-200 dark:border-white/5">
       {/* Gradient separator */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-pink/50 to-transparent" />
 
