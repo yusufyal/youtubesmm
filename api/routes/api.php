@@ -83,6 +83,7 @@ Route::prefix('checkout')->middleware('throttle:checkout')->group(function () {
     Route::post('quote', [CheckoutController::class, 'quote']);
     Route::post('create-order', [CheckoutController::class, 'createOrder']);
     Route::post('validate-coupon', [CheckoutController::class, 'validateCoupon']);
+    Route::post('confirm-payment', [CheckoutController::class, 'confirmPayment']);
 });
 
 // Payment Routes

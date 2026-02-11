@@ -203,6 +203,13 @@ class ApiClient {
     });
   }
 
+  async confirmPayment(orderId: number): Promise<{ order_id: number; payment_status: string; status: string }> {
+    return this.request('/checkout/confirm-payment', {
+      method: 'POST',
+      body: JSON.stringify({ order_id: orderId }),
+    });
+  }
+
   // Customer endpoints
   async getMyOrders(page?: number): Promise<PaginatedResponse<Order>> {
     const query = page ? `?page=${page}` : '';

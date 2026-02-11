@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Checkout;
 
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
+use App\Models\Order;
 use App\Models\Package;
 use App\Services\CheckoutService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -143,5 +145,53 @@ class CheckoutController extends Controller
             'discount' => $discount,
             'valid' => true,
         ]);
+    }
+
+    /**
+     * Confirm payment for an order (called from success page after external payment gateway redirect).
+     * Updates the order's payment_status to 'completed' and status to 'processing'.
+     * Only works on orders that are still in 'pending' payment status.
+     */
+    public function confirmPayment(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'order_id' => ['required', 'integer', 'exists:orders,id'],
+        ]);
+
+        $order = Order::find($validated['order_id']);
+
+        if (!$order) {
+            return $this->errorResponse('Order not found', 404);
+        }
+
+        // Only confirm if payment is still pending (idempotent - already confirmed orders are fine)
+        if ($order->payment_status === 'completed') {
+            return $this->successResponse([
+                'order_id' => $order->id,
+                'payment_status' => $order->payment_status,
+                'status' => $order->status,
+            ], 'Payment already confirmed');
+        }
+
+        if ($order->payment_status !== 'pending') {
+            return $this->errorResponse('Order payment cannot be confirmed in its current state', 400);
+        }
+
+        $order->update([
+            'payment_status' => 'completed',
+            'status' => 'processing',
+        ]);
+
+        Log::info('Payment confirmed via external gateway', [
+            'order_id' => $order->id,
+            'order_number' => $order->order_number,
+            'amount' => $order->amount,
+        ]);
+
+        return $this->successResponse([
+            'order_id' => $order->id,
+            'payment_status' => $order->payment_status,
+            'status' => $order->status,
+        ], 'Payment confirmed successfully');
     }
 }
