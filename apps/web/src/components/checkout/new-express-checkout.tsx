@@ -189,10 +189,6 @@ export function NewExpressCheckout({ service, colors }: NewExpressCheckoutProps)
       // Create order in our backend
       const response = await api.createOrder(orderData);
 
-      // Map selected package to external gateway package ID (order_1, order_2, etc.)
-      const packageIndex = packages.findIndex((p) => p.id === selectedPackage!.id);
-      const paymentPackageId = `order_${packageIndex + 1}`;
-
       const gatewayUrl =
         process.env.NEXT_PUBLIC_PAYMENT_GATEWAY_URL ||
         'https://viralreach-production.up.railway.app';
@@ -204,9 +200,9 @@ export function NewExpressCheckout({ service, colors }: NewExpressCheckoutProps)
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          packageId: paymentPackageId,
+          amount: total,
           successUrl: `${siteUrl}/checkout/complete?order_id=${response.order_id}`,
-          cancelUrl: `${siteUrl}/services/${service.slug}`,
+          cancelUrl: window.location.href,
         }),
       });
 
