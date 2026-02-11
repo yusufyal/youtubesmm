@@ -114,6 +114,50 @@ class AdminApiClient {
     return data.data ?? data;
   }
 
+  private async paginatedRequest<T>(
+    endpoint: string,
+    options: RequestInit = {}
+  ): Promise<PaginatedResponse<T>> {
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      ...options.headers,
+    };
+
+    const token = this.getToken();
+    if (token) {
+      (headers as Record<string, string>)['Authorization'] = `Bearer ${token}`;
+    }
+
+    const xsrfToken = this.getXsrfToken();
+    if (xsrfToken) {
+      (headers as Record<string, string>)['X-XSRF-TOKEN'] = xsrfToken;
+    }
+
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      ...options,
+      headers,
+      credentials: 'include',
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        this.setToken(null);
+        if (typeof window !== 'undefined') {
+          window.location.href = '/login';
+        }
+      }
+      throw new Error(json.message || 'An error occurred');
+    }
+
+    return {
+      data: json.data ?? [],
+      meta: json.meta,
+    };
+  }
+
   // Auth
   async login(email: string, password: string): Promise<AuthResponse> {
     // Skip CSRF for cross-domain API calls - using Bearer token auth
@@ -198,7 +242,7 @@ class AdminApiClient {
     if (params?.status) searchParams.set('status', params.status);
     if (params?.payment_status) searchParams.set('payment_status', params.payment_status);
     const query = searchParams.toString() ? `?${searchParams.toString()}` : '';
-    return this.request(`/admin/orders${query}`);
+    return this.paginatedRequest(`/admin/orders${query}`);
   }
 
   async getOrder(id: number): Promise<Order> {
@@ -218,7 +262,7 @@ class AdminApiClient {
     if (params?.page) searchParams.set('page', params.page.toString());
     if (params?.role) searchParams.set('role', params.role);
     const query = searchParams.toString() ? `?${searchParams.toString()}` : '';
-    return this.request(`/admin/users${query}`);
+    return this.paginatedRequest(`/admin/users${query}`);
   }
 
   async createUser(data: Partial<User> & { password: string }): Promise<User> {
@@ -241,7 +285,7 @@ class AdminApiClient {
 
   // Coupons
   async getCoupons(): Promise<PaginatedResponse<Coupon>> {
-    return this.request('/admin/coupons');
+    return this.paginatedRequest('/admin/coupons');
   }
 
   async createCoupon(data: Partial<Coupon>): Promise<Coupon> {
@@ -264,7 +308,7 @@ class AdminApiClient {
 
   // Posts
   async getPosts(): Promise<PaginatedResponse<Post>> {
-    return this.request('/admin/posts');
+    return this.paginatedRequest('/admin/posts');
   }
 
   async createPost(data: Partial<Post>): Promise<Post> {
