@@ -152,6 +152,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function ()
     Route::post('orders/{order}/refund', [AdminOrderController::class, 'refund']);
     
     // Users
+    Route::get('customers', [AdminUserController::class, 'customers']);
     Route::apiResource('users', AdminUserController::class);
     
     // Coupons

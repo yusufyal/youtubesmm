@@ -84,6 +84,7 @@ export interface OrderLink {
 export interface Order {
   id: number;
   order_number: string;
+  group_id?: string;
   user_id?: number;
   user?: User;
   package_id: number;

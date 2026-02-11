@@ -107,13 +107,20 @@ class CheckoutController extends Controller
                 'user_id' => $request->user()?->id,
             ]);
 
-            return $this->successResponse([
+            // If multi-link, return group info so all orders can be confirmed
+            $responseData = [
                 'order_id' => $order->id,
                 'order_number' => $order->order_number,
                 'amount' => $order->amount,
                 'currency' => 'USD',
                 'links_count' => count($targetLinks),
-            ], 'Order created successfully', 201);
+            ];
+
+            if ($order->group_id) {
+                $responseData['group_id'] = $order->group_id;
+            }
+
+            return $this->successResponse($responseData, 'Order created successfully', 201);
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), 400);
         }
@@ -177,21 +184,37 @@ class CheckoutController extends Controller
             return $this->errorResponse('Order payment cannot be confirmed in its current state', 400);
         }
 
-        $order->update([
-            'payment_status' => 'completed',
-            'status' => 'processing',
-        ]);
+        // If order belongs to a group (multi-link), confirm all orders in the group
+        if ($order->group_id) {
+            Order::where('group_id', $order->group_id)
+                ->where('payment_status', 'pending')
+                ->update([
+                    'payment_status' => 'completed',
+                    'status' => 'processing',
+                ]);
 
-        Log::info('Payment confirmed via external gateway', [
-            'order_id' => $order->id,
-            'order_number' => $order->order_number,
-            'amount' => $order->amount,
-        ]);
+            Log::info('Payment confirmed for order group via external gateway', [
+                'group_id' => $order->group_id,
+                'order_number' => $order->order_number,
+                'orders_confirmed' => Order::where('group_id', $order->group_id)->count(),
+            ]);
+        } else {
+            $order->update([
+                'payment_status' => 'completed',
+                'status' => 'processing',
+            ]);
+
+            Log::info('Payment confirmed via external gateway', [
+                'order_id' => $order->id,
+                'order_number' => $order->order_number,
+                'amount' => $order->amount,
+            ]);
+        }
 
         return $this->successResponse([
             'order_id' => $order->id,
-            'payment_status' => $order->payment_status,
-            'status' => $order->status,
+            'payment_status' => 'completed',
+            'status' => 'processing',
         ], 'Payment confirmed successfully');
     }
 }

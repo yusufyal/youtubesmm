@@ -6,6 +6,7 @@ use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Package;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CheckoutService
 {
@@ -47,6 +48,13 @@ class CheckoutService
         ];
     }
 
+    /**
+     * Create order(s) from checkout data.
+     * When multiple links are provided, creates separate Order records per link
+     * sharing the same group_id and order_number.
+     *
+     * @return Order|array Returns first Order (for backward compat) or array with all order IDs
+     */
     public function createOrder(array $data): Order
     {
         return DB::transaction(function () use ($data) {
@@ -66,26 +74,77 @@ class CheckoutService
             // Calculate price server-side (NEVER trust client price)
             $quote = $this->calculateQuote($package, $quantity, $data['coupon_code'] ?? null);
             
-            $order = Order::create([
-                'user_id' => $data['user_id'] ?? null,
-                'package_id' => $package->id,
-                'guest_email' => $data['guest_email'] ?? null,
-                'target_link' => $data['target_link'],
-                'target_links' => $data['target_links'] ?? null,
-                'quantity' => $quantity,
-                'amount' => $quote['total'],
-                'discount' => $quote['discount'],
-                'coupon_id' => $quote['coupon'] ? Coupon::where('code', $quote['coupon']['code'])->first()?->id : null,
-                'status' => 'pending',
-                'payment_status' => 'pending',
-            ]);
+            $couponId = $quote['coupon'] ? Coupon::where('code', $quote['coupon']['code'])->first()?->id : null;
 
-            // Increment coupon usage if used
-            if ($order->coupon_id) {
-                Coupon::find($order->coupon_id)->incrementUsage();
+            $targetLinks = $data['target_links'] ?? null;
+            $hasMultipleLinks = is_array($targetLinks) && count($targetLinks) > 1;
+
+            if ($hasMultipleLinks) {
+                // Multi-link order: create separate Order per link
+                $groupId = Str::uuid()->toString();
+                $orderNumber = Order::generateOrderNumber();
+                $totalAmount = $quote['total'];
+                $totalDiscount = $quote['discount'];
+                $totalQuantity = array_sum(array_column($targetLinks, 'quantity'));
+                $firstOrder = null;
+
+                foreach ($targetLinks as $index => $link) {
+                    $linkQuantity = $link['quantity'];
+                    // Proportional amount based on quantity ratio
+                    $ratio = $totalQuantity > 0 ? $linkQuantity / $totalQuantity : 1 / count($targetLinks);
+                    $linkAmount = round($totalAmount * $ratio, 2);
+                    $linkDiscount = round($totalDiscount * $ratio, 2);
+
+                    $order = Order::create([
+                        'order_number' => $orderNumber,
+                        'group_id' => $groupId,
+                        'user_id' => $data['user_id'] ?? null,
+                        'package_id' => $package->id,
+                        'guest_email' => $data['guest_email'] ?? null,
+                        'target_link' => $link['url'],
+                        'target_links' => $targetLinks,
+                        'quantity' => $linkQuantity,
+                        'amount' => $linkAmount,
+                        'discount' => $linkDiscount,
+                        'coupon_id' => $index === 0 ? $couponId : null, // Coupon only on first
+                        'status' => 'pending',
+                        'payment_status' => 'pending',
+                    ]);
+
+                    if ($index === 0) {
+                        $firstOrder = $order;
+                    }
+                }
+
+                // Increment coupon usage once
+                if ($couponId) {
+                    Coupon::find($couponId)->incrementUsage();
+                }
+
+                return $firstOrder->load('package.service');
+            } else {
+                // Single-link order (original behavior)
+                $order = Order::create([
+                    'user_id' => $data['user_id'] ?? null,
+                    'package_id' => $package->id,
+                    'guest_email' => $data['guest_email'] ?? null,
+                    'target_link' => $data['target_link'],
+                    'target_links' => $targetLinks,
+                    'quantity' => $quantity,
+                    'amount' => $quote['total'],
+                    'discount' => $quote['discount'],
+                    'coupon_id' => $couponId,
+                    'status' => 'pending',
+                    'payment_status' => 'pending',
+                ]);
+
+                // Increment coupon usage if used
+                if ($order->coupon_id) {
+                    Coupon::find($order->coupon_id)->incrementUsage();
+                }
+
+                return $order->load('package.service');
             }
-
-            return $order->load('package.service');
         });
     }
 

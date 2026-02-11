@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AuditLog;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -97,6 +99,97 @@ class UserController extends Controller
         AuditLog::log('updated', $user, $oldValues, $user->makeHidden('password')->toArray());
 
         return $this->successResponse($user, 'User updated successfully');
+    }
+
+    /**
+     * Get all customers: registered users with role=customer + guest emails from orders.
+     */
+    public function customers(Request $request): JsonResponse
+    {
+        $perPage = min($request->get('per_page', 15), 100);
+        $search = $request->get('search');
+
+        // Get registered customers
+        $registeredQuery = User::where('role', 'customer')
+            ->withCount('orders')
+            ->withSum('orders', 'amount')
+            ->select('id', 'name', 'email', 'role', 'created_at', 'updated_at')
+            ->selectRaw("'registered' as customer_type");
+
+        if ($search) {
+            $registeredQuery->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        // Get guest customers (unique guest_email from orders where user_id is null)
+        $guestQuery = Order::whereNull('user_id')
+            ->whereNotNull('guest_email')
+            ->groupBy('guest_email')
+            ->select(
+                DB::raw('MIN(id) as id'),
+                DB::raw("'' as name"),
+                'guest_email as email',
+                DB::raw("'customer' as role"),
+                DB::raw('MIN(created_at) as created_at'),
+                DB::raw('MAX(updated_at) as updated_at'),
+                DB::raw('COUNT(*) as orders_count'),
+                DB::raw('COALESCE(SUM(amount), 0) as orders_sum_amount'),
+                DB::raw("'guest' as customer_type"),
+            );
+
+        if ($search) {
+            $guestQuery->where('guest_email', 'like', "%{$search}%");
+        }
+
+        // Combine both: get registered first, then guests
+        $registered = $registeredQuery->get()->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
+                'customer_type' => 'registered',
+                'orders_count' => $user->orders_count ?? 0,
+                'total_spent' => (float) ($user->orders_sum_amount ?? 0),
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at,
+            ];
+        });
+
+        $guests = $guestQuery->get()->map(function ($row) {
+            return [
+                'id' => null,
+                'name' => 'Guest',
+                'email' => $row->email,
+                'role' => 'customer',
+                'customer_type' => 'guest',
+                'orders_count' => (int) $row->orders_count,
+                'total_spent' => (float) $row->orders_sum_amount,
+                'created_at' => $row->created_at,
+                'updated_at' => $row->updated_at,
+            ];
+        });
+
+        // Merge and paginate manually
+        $allCustomers = $registered->merge($guests)->sortByDesc('created_at')->values();
+        $total = $allCustomers->count();
+        $page = max(1, (int) $request->get('page', 1));
+        $items = $allCustomers->slice(($page - 1) * $perPage, $perPage)->values();
+
+        return response()->json([
+            'data' => $items,
+            'meta' => [
+                'current_page' => $page,
+                'last_page' => max(1, (int) ceil($total / $perPage)),
+                'per_page' => $perPage,
+                'total' => $total,
+                'from' => $total > 0 ? (($page - 1) * $perPage) + 1 : null,
+                'to' => min($page * $perPage, $total),
+            ],
+            'links' => [],
+        ]);
     }
 
     public function destroy(Request $request, User $user): JsonResponse

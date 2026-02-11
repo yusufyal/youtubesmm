@@ -258,6 +258,14 @@ class AdminApiClient {
   }
 
   // Users
+  async getCustomers(params?: { page?: number; search?: string }): Promise<PaginatedResponse<any>> {
+    const searchParams = new URLSearchParams();
+    if (params?.page) searchParams.set('page', params.page.toString());
+    if (params?.search) searchParams.set('search', params.search);
+    const query = searchParams.toString() ? `?${searchParams.toString()}` : '';
+    return this.paginatedRequest(`/admin/customers${query}`);
+  }
+
   async getUsers(params?: { page?: number; role?: string }): Promise<PaginatedResponse<User>> {
     const searchParams = new URLSearchParams();
     if (params?.page) searchParams.set('page', params.page.toString());
