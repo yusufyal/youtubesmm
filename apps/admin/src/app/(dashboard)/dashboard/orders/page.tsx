@@ -10,7 +10,7 @@ import {
   Copy,
   Check,
 } from 'lucide-react';
-import type { Order, PaginatedResponse } from '@/types';
+import type { Order, OrderStatus, PaginatedResponse } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency, formatDateTime, formatNumber } from '@/lib/utils';
@@ -59,11 +59,11 @@ function OrderDetailRow({ order }: { order: Order }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [status, setStatus] = useState(order.status);
 
-  const handleStatusChange = async (newStatus: string) => {
+  const handleStatusChange = async (newStatus: OrderStatus) => {
     setIsUpdating(true);
     try {
       await adminApi.updateOrder(order.id, { status: newStatus });
-      setStatus(newStatus as Order['status']);
+      setStatus(newStatus);
     } catch (err) {
       console.error('Failed to update order:', err);
     } finally {
@@ -108,7 +108,7 @@ function OrderDetailRow({ order }: { order: Order }) {
               <select
                 className="rounded-md border bg-background px-2 py-1.5 text-xs"
                 value={status}
-                onChange={(e) => handleStatusChange(e.target.value)}
+                onChange={(e) => handleStatusChange(e.target.value as OrderStatus)}
                 disabled={isUpdating}
               >
                 <option value="pending">Pending</option>
