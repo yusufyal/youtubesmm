@@ -155,6 +155,7 @@ class AdminApiClient {
     return {
       data: json.data ?? [],
       meta: json.meta,
+      links: json.links ?? {},
     };
   }
 
