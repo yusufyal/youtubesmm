@@ -23,12 +23,6 @@ importers:
 
   apps/admin:
     dependencies:
-      '@aynyoutube/config':
-        specifier: workspace:*
-        version: link:../../packages/config
-      '@aynyoutube/types':
-        specifier: workspace:*
-        version: link:../../packages/types
       '@radix-ui/react-dialog':
         specifier: ^1.1.15
         version: 1.1.15(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -123,12 +117,6 @@ importers:
 
   apps/web:
     dependencies:
-      '@aynyoutube/config':
-        specifier: workspace:*
-        version: link:../../packages/config
-      '@aynyoutube/types':
-        specifier: workspace:*
-        version: link:../../packages/types
       '@radix-ui/react-accordion':
         specifier: ^1.2.0
         version: 1.2.12(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

@@ -7,6 +7,10 @@ $allowedOrigins = array_filter([
     'http://localhost:4300',
     'http://127.0.0.1:4200',
     'http://127.0.0.1:4300',
+    'https://growmediafans.com',
+    'https://www.growmediafans.com',
+    'https://admin.growmediafans.com',
+    'https://api.growmediafans.com',
 ]);
 
 return [
@@ -19,6 +23,7 @@ return [
     'allowed_origins_patterns' => [
         '#^https://.*\.up\.railway\.app$#',
         '#^https://.*\.railway\.app$#',
+        '#^https://.*\.growmediafans\.com$#',
     ],
 
     'allowed_headers' => ['*'],
