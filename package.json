@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "preinstall": "npx -y corepack enable && corepack prepare pnpm@9.0.0 --activate || true",
     "dev": "turbo dev",
     "build": "turbo build",
     "lint": "turbo lint",
