@@ -11,6 +11,17 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Declare build args so Railway can pass env vars at build time
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_SITE_URL
+ARG NEXT_PUBLIC_PAYMENT_GATEWAY_URL
+
+# Make them available as ENV during build (Next.js inlines NEXT_PUBLIC_* at build time)
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_PAYMENT_GATEWAY_URL=$NEXT_PUBLIC_PAYMENT_GATEWAY_URL
+
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build

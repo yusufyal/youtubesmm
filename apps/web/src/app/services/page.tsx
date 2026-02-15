@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import api from '@/lib/api';
 import { ServicesPageClient } from './services-client';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'YouTube Growth Services | AYN YouTube',
   description:

@@ -1,5 +1,8 @@
 import { Metadata } from 'next';
 import api from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
+
 import {
   Accordion,
   AccordionContent,

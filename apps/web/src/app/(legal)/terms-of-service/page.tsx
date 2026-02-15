@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import api from '@/lib/api';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'Our terms of service outline the rules and guidelines for using our platform.',

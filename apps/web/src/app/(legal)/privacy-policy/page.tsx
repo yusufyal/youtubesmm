@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import api from '@/lib/api';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'Our privacy policy explains how we collect, use, and protect your personal information.',

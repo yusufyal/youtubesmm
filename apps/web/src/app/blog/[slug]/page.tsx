@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
+
+export const dynamic = 'force-dynamic';
 import api from '@/lib/api';
 import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/utils';

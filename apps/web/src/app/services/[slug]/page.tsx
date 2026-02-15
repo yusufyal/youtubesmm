@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import api from '@/lib/api';
 import { ServiceDetailClient } from './service-detail-client';
 
+export const dynamic = 'force-dynamic';
+
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
 }
