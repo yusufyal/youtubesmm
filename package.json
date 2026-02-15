@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx -y corepack enable && corepack prepare pnpm@9.0.0 --activate || true",
     "dev": "turbo dev",
     "build": "turbo build",
     "lint": "turbo lint",
@@ -12,6 +11,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
+    "pnpm": "^9.0.0",
     "prettier": "^3.2.0",
     "turbo": "^2.0.0",
     "typescript": "^5.3.0"
