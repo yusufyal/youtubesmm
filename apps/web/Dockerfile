@@ -11,10 +11,17 @@ RUN npm install
 # Copy source code
 COPY . .
 
+# Increase Node.js memory for build
+ENV NODE_OPTIONS="--max-old-space-size=2048"
+
 # Build the Next.js app
 RUN npm run build
 
-# Expose port
+# Remove dev dependencies after build
+RUN npm prune --production
+
+# Reset memory limit for runtime
+ENV NODE_OPTIONS=""
 ENV PORT=8080
 EXPOSE 8080
 
