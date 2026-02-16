@@ -10,6 +10,8 @@ $allowedOrigins = array_filter([
     'https://growmediafans.com',
     'https://www.growmediafans.com',
     'https://admin.growmediafans.com',
+    'https://panel.growmediafans.com',
+    'https://backend.growmediafans.com',
     'https://api.growmediafans.com',
 ]);
 
