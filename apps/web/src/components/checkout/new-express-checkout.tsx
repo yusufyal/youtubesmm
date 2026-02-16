@@ -189,20 +189,17 @@ export function NewExpressCheckout({ service, colors }: NewExpressCheckoutProps)
       // Create order in our backend
       const response = await api.createOrder(orderData);
 
-      const gatewayUrl =
-        process.env.NEXT_PUBLIC_PAYMENT_GATEWAY_URL ||
-        'https://hnh-media.com';
       const siteUrl =
         process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
 
-      // Redirect to external payment gateway (Stripe Checkout via ViralReach)
-      const paymentRes = await fetch(`${gatewayUrl}/api/checkout`, {
+      // Proxy payment through our API route to avoid CORS issues
+      const paymentRes = await fetch('/api/payment/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           amount: total,
           successUrl: `${siteUrl}/checkout/complete?order_id=${response.order_id}`,
-          cancelUrl: window.location.href,
+          cancelUrl: `${siteUrl}${window.location.pathname}`,
         }),
       });
 
