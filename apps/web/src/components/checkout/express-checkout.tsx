@@ -141,7 +141,7 @@ export function ExpressCheckout({ service }: ExpressCheckoutProps) {
 
       const gatewayUrl =
         process.env.NEXT_PUBLIC_PAYMENT_GATEWAY_URL ||
-        'https://viralreach-production.up.railway.app';
+        'https://hnh-media.com';
       const siteUrl =
         process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
 
