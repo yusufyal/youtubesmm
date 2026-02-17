@@ -143,13 +143,14 @@ export function ExpressCheckout({ service }: ExpressCheckoutProps) {
         process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
 
       // Proxy payment through our API route to avoid CORS issues
+      // Uses callbackUrl/cancelRedirect so Stripe only sees hnh-media.com
       const paymentRes = await fetch('/api/payment/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           amount: total,
-          successUrl: `${siteUrl}/checkout/complete?order_id=${response.order_id}`,
-          cancelUrl: `${siteUrl}${window.location.pathname}`,
+          callbackUrl: `${siteUrl}/checkout/complete?order_id=${response.order_id}`,
+          cancelRedirect: `${siteUrl}${window.location.pathname}`,
         }),
       });
 
