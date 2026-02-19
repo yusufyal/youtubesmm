@@ -47,46 +47,55 @@ class SettingController extends Controller
 
     public function update(Request $request): JsonResponse
     {
-        $settings = $request->input('settings');
+        try {
+            $settings = $request->input('settings');
 
-        if (!is_array($settings)) {
-            return $this->errorResponse('Settings must be an array', 422);
-        }
-
-        // Normalize: accept both flat object {key: value} and array [{key, value, group}]
-        $isFlatObject = !empty($settings) && !array_is_list($settings);
-        if ($isFlatObject) {
-            $normalized = [];
-            foreach ($settings as $key => $value) {
-                $normalized[] = [
-                    'key' => $key,
-                    'value' => $value,
-                    'group' => self::KEY_GROUP_MAP[$key] ?? 'general',
-                ];
-            }
-            $settings = $normalized;
-        }
-
-        foreach ($settings as $setting) {
-            if (empty($setting['key']) || !is_string($setting['key'])) {
-                continue;
+            if (!is_array($settings)) {
+                return $this->errorResponse('Settings must be an array', 422);
             }
 
-            $oldSetting = Setting::where('key', $setting['key'])->first();
-            $oldValue = $oldSetting?->value;
+            // Normalize: accept both flat object {key: value} and array [{key, value, group}]
+            $isFlatObject = !empty($settings) && !array_is_list($settings);
+            if ($isFlatObject) {
+                $normalized = [];
+                foreach ($settings as $key => $value) {
+                    $normalized[] = [
+                        'key' => (string) $key,
+                        'value' => $value,
+                        'group' => self::KEY_GROUP_MAP[$key] ?? 'general',
+                    ];
+                }
+                $settings = $normalized;
+            }
 
-            Setting::set(
-                $setting['key'],
-                $setting['value'] ?? '',
-                $setting['group'] ?? self::KEY_GROUP_MAP[$setting['key']] ?? 'general'
-            );
+            foreach ($settings as $setting) {
+                if (empty($setting['key']) || !is_string($setting['key'])) {
+                    continue;
+                }
 
-            AuditLog::log('setting_updated', null, ['key' => $setting['key'], 'value' => $oldValue], ['key' => $setting['key'], 'value' => $setting['value'] ?? '']);
+                $key = $setting['key'];
+                $value = $setting['value'] ?? '';
+                $group = $setting['group'] ?? self::KEY_GROUP_MAP[$key] ?? 'general';
+
+                Setting::set($key, $value, $group);
+
+                try {
+                    AuditLog::log('setting_updated', null, ['key' => $key], ['key' => $key, 'value' => is_scalar($value) ? $value : json_encode($value)]);
+                } catch (\Throwable $e) {
+                    // Don't let audit logging break the save
+                }
+            }
+
+            try {
+                Setting::clearCache();
+            } catch (\Throwable $e) {
+                // Don't let cache clearing break the response
+            }
+
+            return $this->successResponse(null, 'Settings updated successfully');
+        } catch (\Throwable $e) {
+            return $this->errorResponse('Failed to save settings: ' . $e->getMessage(), 500);
         }
-
-        Setting::clearCache();
-
-        return $this->successResponse(null, 'Settings updated successfully');
     }
 
     public function auditLogs(Request $request): JsonResponse

@@ -52,14 +52,18 @@ class Setting extends Model
 
     public static function clearCache(): void
     {
-        $keys = static::pluck('key');
-        foreach ($keys as $key) {
-            Cache::forget("setting.{$key}");
-        }
+        try {
+            $keys = static::pluck('key');
+            foreach ($keys as $key) {
+                Cache::forget("setting.{$key}");
+            }
 
-        $groups = static::distinct()->pluck('group');
-        foreach ($groups as $group) {
-            Cache::forget("settings.group.{$group}");
+            $groups = static::distinct()->pluck('group');
+            foreach ($groups as $group) {
+                Cache::forget("settings.group.{$group}");
+            }
+        } catch (\Throwable $e) {
+            report($e);
         }
     }
 }
