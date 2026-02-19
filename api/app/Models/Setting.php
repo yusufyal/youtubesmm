@@ -52,6 +52,14 @@ class Setting extends Model
 
     public static function clearCache(): void
     {
-        Cache::tags(['settings'])->flush();
+        $keys = static::pluck('key');
+        foreach ($keys as $key) {
+            Cache::forget("setting.{$key}");
+        }
+
+        $groups = static::distinct()->pluck('group');
+        foreach ($groups as $group) {
+            Cache::forget("settings.group.{$group}");
+        }
     }
 }
