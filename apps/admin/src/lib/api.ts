@@ -395,9 +395,35 @@ class AdminApiClient {
   }
 
   async updateSettings(settings: Record<string, any>): Promise<void> {
+    const keyGroupMap: Record<string, string> = {
+      site_name: 'general',
+      site_url: 'general',
+      support_email: 'general',
+      stripe_enabled: 'payment',
+      stripe_public_key: 'payment',
+      stripe_secret_key: 'payment',
+      tap_enabled: 'payment',
+      tap_public_key: 'payment',
+      tap_secret_key: 'payment',
+      default_seo_title: 'seo',
+      default_meta_description: 'seo',
+      google_analytics_id: 'seo',
+      google_site_verification: 'seo',
+      facebook_pixel_id: 'seo',
+      order_notification_email: 'notifications',
+      low_balance_alert: 'notifications',
+      low_balance_threshold: 'notifications',
+    };
+
+    const settingsArray = Object.entries(settings).map(([key, value]) => ({
+      key,
+      value,
+      group: keyGroupMap[key] || 'general',
+    }));
+
     return this.request('/admin/settings', {
       method: 'POST',
-      body: JSON.stringify({ settings }),
+      body: JSON.stringify({ settings: settingsArray }),
     });
   }
 

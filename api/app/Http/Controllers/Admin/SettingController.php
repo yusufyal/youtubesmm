@@ -30,7 +30,7 @@ class SettingController extends Controller
         $validated = $request->validate([
             'settings' => ['required', 'array'],
             'settings.*.key' => ['required', 'string', 'max:100'],
-            'settings.*.value' => ['required'],
+            'settings.*.value' => ['present'],
             'settings.*.group' => ['nullable', 'string', 'max:50'],
         ]);
 

@@ -71,7 +71,13 @@ export default function SettingsPage() {
     try {
       const response = await adminApi.getSettings();
       if (response && typeof response === 'object') {
-        setSettings({ ...defaultSettings, ...response });
+        const flatSettings: Record<string, any> = {};
+        for (const value of Object.values(response)) {
+          if (value && typeof value === 'object' && !Array.isArray(value)) {
+            Object.assign(flatSettings, value);
+          }
+        }
+        setSettings({ ...defaultSettings, ...flatSettings });
       }
     } catch (error) {
       console.error('Failed to fetch settings:', error);
