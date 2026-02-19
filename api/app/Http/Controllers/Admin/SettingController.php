@@ -25,26 +25,63 @@ class SettingController extends Controller
         return $this->successResponse($settings);
     }
 
+    private const KEY_GROUP_MAP = [
+        'site_name' => 'general',
+        'site_url' => 'general',
+        'support_email' => 'general',
+        'stripe_enabled' => 'payment',
+        'stripe_public_key' => 'payment',
+        'stripe_secret_key' => 'payment',
+        'tap_enabled' => 'payment',
+        'tap_public_key' => 'payment',
+        'tap_secret_key' => 'payment',
+        'default_seo_title' => 'seo',
+        'default_meta_description' => 'seo',
+        'google_analytics_id' => 'seo',
+        'google_site_verification' => 'seo',
+        'facebook_pixel_id' => 'seo',
+        'order_notification_email' => 'notifications',
+        'low_balance_alert' => 'notifications',
+        'low_balance_threshold' => 'notifications',
+    ];
+
     public function update(Request $request): JsonResponse
     {
-        $validated = $request->validate([
-            'settings' => ['required', 'array'],
-            'settings.*.key' => ['required', 'string', 'max:100'],
-            'settings.*.value' => ['present'],
-            'settings.*.group' => ['nullable', 'string', 'max:50'],
-        ]);
+        $settings = $request->input('settings');
 
-        foreach ($validated['settings'] as $setting) {
+        if (!is_array($settings)) {
+            return $this->errorResponse('Settings must be an array', 422);
+        }
+
+        // Normalize: accept both flat object {key: value} and array [{key, value, group}]
+        $isFlatObject = !empty($settings) && !array_is_list($settings);
+        if ($isFlatObject) {
+            $normalized = [];
+            foreach ($settings as $key => $value) {
+                $normalized[] = [
+                    'key' => $key,
+                    'value' => $value,
+                    'group' => self::KEY_GROUP_MAP[$key] ?? 'general',
+                ];
+            }
+            $settings = $normalized;
+        }
+
+        foreach ($settings as $setting) {
+            if (empty($setting['key']) || !is_string($setting['key'])) {
+                continue;
+            }
+
             $oldSetting = Setting::where('key', $setting['key'])->first();
             $oldValue = $oldSetting?->value;
 
             Setting::set(
                 $setting['key'],
-                $setting['value'],
-                $setting['group'] ?? 'general'
+                $setting['value'] ?? '',
+                $setting['group'] ?? self::KEY_GROUP_MAP[$setting['key']] ?? 'general'
             );
 
-            AuditLog::log('setting_updated', null, ['key' => $setting['key'], 'value' => $oldValue], ['key' => $setting['key'], 'value' => $setting['value']]);
+            AuditLog::log('setting_updated', null, ['key' => $setting['key'], 'value' => $oldValue], ['key' => $setting['key'], 'value' => $setting['value'] ?? '']);
         }
 
         Setting::clearCache();
