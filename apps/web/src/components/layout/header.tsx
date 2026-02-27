@@ -7,12 +7,12 @@ import { Menu, X, User, Play, ArrowRight, Zap, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/context/theme-context';
 
 const navigation = [
-  { name: 'Buy YouTube Views', href: '/services/youtube-views' },
-  { name: 'Buy YouTube Subscribers', href: '/services/youtube-subscribers' },
-  { name: 'Buy YouTube Watch Time', href: '/services/youtube-watch-time' },
-  { name: 'Buy YouTube Likes', href: '/services/youtube-likes' },
-  { name: 'Buy YouTube Comments', href: '/services/youtube-comments' },
-  { name: 'FAQ', href: '/faq' },
+  { name: 'Buy YouTube Views', href: '/services/youtube-views' title: 'Buy YouTube Views'},
+  { name: 'Buy YouTube Subscribers', href: '/services/youtube-subscribers' title: 'Buy YouTube Subscribers'},
+  { name: 'Buy YouTube Watch Time', href: '/services/youtube-watch-time' title: 'Buy YouTube Watch Time'},
+  { name: 'Buy YouTube Likes', href: '/services/youtube-likes' title: 'Buy YouTube Likes'},
+  { name: 'Buy YouTube Comments', href: '/services/youtube-comments' title: 'Buy YouTube Comments'},
+  { name: 'FAQ', href: '/faq' title: 'FAQ'},
 ];
 
 export function Header() {
