@@ -4,8 +4,8 @@ import api from '@/lib/api';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: 'Our privacy policy explains how we collect, use, and protect your personal information.',
+  title: 'Privacy Policy | Protect Your Data',
+  description: 'Read the AYN YouTube privacy policy to see how your data is collected and protected. Learn about your rights and how we keep your information secure today.',
 };
 
 async function getPageContent() {
