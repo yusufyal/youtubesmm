@@ -4,8 +4,8 @@ import api from '@/lib/api';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Refund Policy',
-  description: 'Our refund policy explains when and how you can request a refund for our services.',
+  title: 'Comprehensive Refund Policy',
+  description: 'Review the AYN YouTube refund policy to understand your rights, eligibility, and service terms. Learn how refunds work and contact support for help today.',
 };
 
 async function getPageContent() {
