@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import { Shield, Zap, Users, HeartHandshake, Award, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us - AYN YouTube Growth Services',
+  title: 'About Us | Trusted Growth Services',
   description:
-    'Learn about AYN YouTube, a trusted platform helping creators grow their YouTube channels with premium services. Safe, reliable, and fast.',
+    'Learn about AYN YouTube and how we help creators grow with safe and reliable services. Trusted by over 50,000 creators worldwide. Discover more today.',
   openGraph: {
     title: 'About Us | AYN YouTube',
     description: 'Trusted by 50,000+ creators worldwide. Premium YouTube growth services.',
