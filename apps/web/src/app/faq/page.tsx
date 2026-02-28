@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions',
   description:
-    'Find answers to common questions about our YouTube growth services, payment methods, delivery times, and more.',
+    'Find answers to frequently asked questions about AYN YouTube services, payments, and delivery times. Get clear information and support in one place.',
   openGraph: {
     title: 'FAQ | AYN YouTube',
     description: 'Frequently asked questions about our YouTube growth services.',
