@@ -6,6 +6,9 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Terms of Service | Read Before Ordering',
   description: "Read Growmediafans's terms of service to understand rules, usage, and service conditions. Check your rights and responsibilities before ordering today.",
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/terms-of-service`,
+  },
 };
 
 async function getPageContent() {

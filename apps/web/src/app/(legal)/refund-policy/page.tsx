@@ -6,6 +6,9 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Refund Policy',
   description: 'Our refund policy explains when and how you can request a refund for our services.',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/refund-policy`,
+  },
 };
 
 async function getPageContent() {

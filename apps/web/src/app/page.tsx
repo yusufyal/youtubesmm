@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: 'Get YouTube Followers & Grow Your YouTube Channel Fast',
   description:
     'Get YouTube followers and grow your YouTube channel faster. Buy YouTube followers safely with a trusted service. Start boosting your channel today!',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/`,
+  },
   openGraph: {
     title: 'Growmediafans - Premium YouTube Growth Services',
     description:

@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: 'Frequently Asked Questions',
   description:
     'Find answers to frequently asked questions about Growmediafans services, payments, and delivery times. Get clear information and support in one place.',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/faq`,
+  },
   openGraph: {
     title: 'FAQ | Growmediafans',
     description: 'Frequently asked questions about our YouTube growth services.',

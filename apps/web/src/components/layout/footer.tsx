@@ -17,6 +17,7 @@ const footerLinks = {
     { name: 'Blog', href: '/blog', title: 'Blog' },
     { name: 'Contact', href: '/contact', title: 'Contact' },
     { name: 'FAQ', href: '/faq', title: 'FAQ' },
+    { name: 'Sitemap', href: '/sitemap', title: 'Sitemap' },
   ],
   legal: [
     { name: 'Terms of Service', href: '/terms-of-service', title: 'Terms of Service' },

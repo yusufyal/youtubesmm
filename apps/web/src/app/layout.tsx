@@ -12,7 +12,7 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-SG4HQTYR9S';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ayn.yt'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'),
   title: {
     default: 'Growmediafans - Premium YouTube Growth Services',
     template: '%s | Growmediafans',
@@ -95,7 +95,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="/" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"

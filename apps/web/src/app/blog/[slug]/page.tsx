@@ -44,7 +44,7 @@ export async function generateMetadata({
       images: post.featured_image ? [{ url: post.featured_image }] : [],
     },
     alternates: {
-      canonical: `/blog/${post.slug}`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/blog/${post.slug}`,
     },
   };
 }

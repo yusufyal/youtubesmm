@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'About Us | Trusted Growth Services',
   description:
     'Learn about Growmediafans and how we help creators grow with safe and reliable services. Trusted by over 50,000 creators worldwide. Discover more today.',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/about`,
+  },
   openGraph: {
     title: 'About Us | Growmediafans',
     description: 'Trusted by 50,000+ creators worldwide. Premium YouTube growth services.',

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'Premium YouTube Growth Services',
   description:
     'Browse premium YouTube growth services including views, subscribers, watch time, comments, and likes. Fast delivery, real results, and trusted support today.',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/services`,
+  },
   openGraph: {
     title: 'YouTube Growth Services | Growmediafans',
     description: 'Premium YouTube growth services with fast delivery and real results.',

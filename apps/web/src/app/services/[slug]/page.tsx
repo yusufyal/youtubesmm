@@ -20,23 +20,28 @@ async function getService(slug: string) {
 // Service-specific SEO data
 const serviceSEOData: Record<string, { title: string; description: string; keywords: string[] }> = {
   views: {
-    title: 'Buy YouTube Views - 100% Real & Instant Delivery | Starting at $0.99',
-    description: 'Buy real YouTube views with instant delivery. Safe, high-quality views from real users. No password required. 24/7 support. Money-back guarantee. Starting at just $0.99. Trusted by 1M+ creators.',
-    keywords: ['buy youtube views', 'youtube views', 'real youtube views', 'cheap youtube views', 'instant youtube views', 'buy views for youtube'],
+    title: 'Buy YouTube Views | Real & High Quality',
+    description: 'Buy YouTube views including 1K to 100K packages. Get real, high quality and organic views for videos and live streams to grow your videos safely and naturally.',
+    keywords: ['buy youtube views', 'youtube views', 'real youtube views', 'high quality youtube views', 'organic youtube views', 'buy views for youtube'],
   },
   subscribers: {
-    title: 'Buy YouTube Subscribers - Real & Active | Fast Delivery from $1.99',
-    description: 'Buy real YouTube subscribers to grow your channel fast. High-quality, active subscribers. No password needed. Safe & secure. 30-day refill guarantee. Join 1M+ satisfied customers.',
-    keywords: ['buy youtube subscribers', 'youtube subscribers', 'real youtube subscribers', 'cheap youtube subscribers', 'get youtube subscribers'],
+    title: 'Buy YouTube Subscribers | Real & Active',
+    description: 'Buy YouTube subscribers from Grow Media Fans and grow faster. Choose packages from 100 to 5000 with 100% real, organic subscribers, no drops, and 24/7 support.',
+    keywords: ['buy youtube subscribers', 'youtube subscribers', 'real youtube subscribers', 'active youtube subscribers', 'get youtube subscribers'],
   },
   watch_time: {
-    title: 'Buy YouTube Watch Time Hours - Reach 4000 Hours Fast | Safe & Legit',
-    description: 'Buy YouTube watch time hours to reach monetization requirements faster. High-retention watch hours that count. 100% safe method. No password required. Money-back guarantee.',
+    title: 'Buy YouTube Watch Time | 4000 Hours for Monetization',
+    description: 'Buy YouTube watchtime hours and reach 4000 watch hours faster. Get safe, real watchtime delivery to grow your channel and meet monetization goals quickly.',
     keywords: ['buy youtube watch time', 'youtube watch hours', '4000 watch hours', 'youtube monetization', 'watch time hours'],
   },
+  likes: {
+    title: 'Buy YouTube Likes Fast & Affordable',
+    description: 'Buy YouTube Likes with fast delivery and secure service. Choose packages from 500 to 1000 likes and boost engagement with safe, high-quality YouTube likes.',
+    keywords: ['buy youtube likes', 'youtube likes', 'cheap youtube likes', 'fast youtube likes', 'boost youtube engagement'],
+  },
   comments: {
-    title: 'Buy YouTube Comments - Custom & Relevant | Boost Engagement Now',
-    description: 'Buy YouTube comments to boost engagement and social proof. Custom or relevant comments from real accounts. Fast delivery. No password needed. 24/7 support available.',
+    title: 'Buy YouTube Comments | Custom & Relevant',
+    description: 'Buy YouTube comments with custom & relevant text. Get instant YouTube comments in packs of 10, 25, 50 & 100 to boost engagement & build trust for your videos.',
     keywords: ['buy youtube comments', 'youtube comments', 'custom youtube comments', 'youtube engagement', 'video comments'],
   },
 };

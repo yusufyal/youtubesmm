@@ -6,6 +6,9 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Privacy Policy | Protect Your Data',
   description: 'Read the Growmediafans privacy policy to see how your data is collected and protected. Learn about your rights and how we keep your information secure today.',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/privacy-policy`,
+  },
 };
 
 async function getPageContent() {

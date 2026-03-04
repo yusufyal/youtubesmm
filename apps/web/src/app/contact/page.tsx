@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'Contact Us | 24/7 Customer Support',
   description:
     'Contact Growmediafans for fast and friendly support. Our team is available 24/7 to help with your YouTube growth needs and service inquiries. Get help today.',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/contact`,
+  },
   openGraph: {
     title: 'Contact Us | Growmediafans',
     description: 'Contact our 24/7 support team.',

@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: 'Blog | YouTube Growth Tips & Insights',
   description:
     'Explore the Growmediafans blog for tips, strategies, and insights to grow your YouTube channel faster. Learn proven methods and start improving today.',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/blog`,
+  },
   openGraph: {
     title: 'Blog | Growmediafans',
     description: 'YouTube growth tips, strategies, and industry insights.',
