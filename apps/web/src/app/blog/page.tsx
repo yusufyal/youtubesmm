@@ -9,9 +9,9 @@ import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Blog - YouTube Growth Tips & Insights',
+  title: 'Blog | YouTube Growth Tips & Insights',
   description:
-    'Learn how to grow your YouTube channel with our expert tips, strategies, and industry insights.',
+    'Explore the AYN YouTube blog for tips, strategies, and insights to grow your YouTube channel faster. Learn proven methods and start improving today.',
   openGraph: {
     title: 'Blog | AYN YouTube',
     description: 'YouTube growth tips, strategies, and industry insights.',
