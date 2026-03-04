@@ -54,7 +54,7 @@ export function Header() {
             <Play className="h-5 w-5 text-white fill-white" />
           </motion.div>
           <span className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-            AYN<span className="text-gradient">YouTube</span>
+            Grow<span className="text-gradient">mediafans</span>
           </span>
         </Link>
 

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description:
     'Get YouTube followers and grow your YouTube channel faster. Buy YouTube followers safely with a trusted service. Start boosting your channel today!',
   openGraph: {
-    title: 'AYN YouTube - Premium YouTube Growth Services',
+    title: 'Growmediafans - Premium YouTube Growth Services',
     description:
       'Boost your YouTube channel with premium growth services. Get real views, subscribers, watch time, and comments.',
     type: 'website',

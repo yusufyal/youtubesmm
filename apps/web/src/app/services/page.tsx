@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     'Browse premium YouTube growth services including views, subscribers, watch time, comments, and likes. Fast delivery, real results, and trusted support today.',
   openGraph: {
-    title: 'YouTube Growth Services | AYN YouTube',
+    title: 'YouTube Growth Services | Growmediafans',
     description: 'Premium YouTube growth services with fast delivery and real results.',
   },
 };

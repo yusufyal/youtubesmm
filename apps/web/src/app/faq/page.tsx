@@ -13,9 +13,9 @@ import {
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions',
   description:
-    'Find answers to frequently asked questions about AYN YouTube services, payments, and delivery times. Get clear information and support in one place.',
+    'Find answers to frequently asked questions about Growmediafans services, payments, and delivery times. Get clear information and support in one place.',
   openGraph: {
-    title: 'FAQ | AYN YouTube',
+    title: 'FAQ | Growmediafans',
     description: 'Frequently asked questions about our YouTube growth services.',
   },
 };

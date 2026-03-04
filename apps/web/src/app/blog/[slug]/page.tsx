@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       : undefined,
     publisher: {
       '@type': 'Organization',
-      name: 'AYN YouTube',
+      name: 'Growmediafans',
       logo: {
         '@type': 'ImageObject',
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`,

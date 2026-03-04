@@ -4,9 +4,9 @@ import { Shield, Zap, Users, HeartHandshake, Award, Clock } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'About Us | Trusted Growth Services',
   description:
-    'Learn about AYN YouTube and how we help creators grow with safe and reliable services. Trusted by over 50,000 creators worldwide. Discover more today.',
+    'Learn about Growmediafans and how we help creators grow with safe and reliable services. Trusted by over 50,000 creators worldwide. Discover more today.',
   openGraph: {
-    title: 'About Us | AYN YouTube',
+    title: 'About Us | Growmediafans',
     description: 'Trusted by 50,000+ creators worldwide. Premium YouTube growth services.',
   },
 };
@@ -64,7 +64,7 @@ export default function AboutPage() {
       <section className="bg-gradient-to-b from-red-50 to-white pt-28 pb-16 dark:from-red-950/20 dark:to-background">
         <div className="container text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            About AYN YouTube
+            About Growmediafans
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             We help YouTube creators grow their channels with premium, safe, and
@@ -79,7 +79,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold mb-6">Our Story</h2>
           <div className="prose max-w-none dark:prose-invert text-muted-foreground space-y-4">
             <p>
-              AYN YouTube was founded with a simple mission: to help YouTube creators of
+              Growmediafans was founded with a simple mission: to help YouTube creators of
               all sizes achieve their growth goals. We understand the challenges of building
               a YouTube channel from scratch — the hours of content creation, the struggle
               for visibility, and the frustration of slow growth.
@@ -155,7 +155,7 @@ export default function AboutPage() {
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to Grow Your Channel?</h2>
           <p className="text-muted-foreground mb-6">
-            Join over 50,000 creators who trust AYN YouTube for their channel growth.
+            Join over 50,000 creators who trust Growmediafans for their channel growth.
           </p>
           <a
             href="/services"

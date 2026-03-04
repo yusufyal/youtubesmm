@@ -108,29 +108,29 @@ const features = [
 const getServiceSEOContent = (serviceType: string, serviceName: string) => {
   const content: Record<string, { intro: string; whyBuy: string; ourService: string }> = {
     views: {
-      intro: `Looking to buy YouTube views? You've come to the right place. AYN YouTube offers premium, high-quality YouTube views that help boost your video's visibility and credibility. Our views come from real accounts with genuine activity, ensuring your content gets the exposure it deserves while keeping your channel safe.`,
+      intro: `Looking to buy YouTube views? You've come to the right place. Growmediafans offers premium, high-quality YouTube views that help boost your video's visibility and credibility. Our views come from real accounts with genuine activity, ensuring your content gets the exposure it deserves while keeping your channel safe.`,
       whyBuy: `Buying YouTube views is one of the most effective strategies for kickstarting your channel's growth. When new viewers see a video with thousands of views, they're more likely to click, watch, and engage. This social proof creates a powerful snowball effect that can transform your channel's reach. YouTube's algorithm also favors videos with higher view counts, meaning more organic exposure in search results and recommendations.`,
-      ourService: `At AYN YouTube, we've perfected the art of delivering high-quality YouTube views. Unlike other providers who use bots or low-quality sources, our views come from real accounts with genuine watch time. This means your videos don't just get numbers – they get engagement signals that YouTube's algorithm loves. Our gradual delivery system ensures natural-looking growth that protects your channel while maximizing results.`,
+      ourService: `At Growmediafans, we've perfected the art of delivering high-quality YouTube views. Unlike other providers who use bots or low-quality sources, our views come from real accounts with genuine watch time. This means your videos don't just get numbers – they get engagement signals that YouTube's algorithm loves. Our gradual delivery system ensures natural-looking growth that protects your channel while maximizing results.`,
     },
     subscribers: {
-      intro: `Want to grow your YouTube subscriber base quickly? AYN YouTube provides real, high-quality subscribers that help establish your channel's credibility and unlock new opportunities. Our subscribers come from genuine accounts, giving your channel the social proof it needs to attract even more organic growth.`,
+      intro: `Want to grow your YouTube subscriber base quickly? Growmediafans provides real, high-quality subscribers that help establish your channel's credibility and unlock new opportunities. Our subscribers come from genuine accounts, giving your channel the social proof it needs to attract even more organic growth.`,
       whyBuy: `Subscribers are the foundation of any successful YouTube channel. They're the first to see your new uploads, they help your videos gain initial traction, and they're essential for reaching YouTube's monetization requirements. Buying subscribers accelerates this process, helping you reach milestones faster and establish authority in your niche.`,
       ourService: `Our YouTube subscriber service delivers real accounts that help your channel grow sustainably. We focus on quality over quantity, ensuring each subscriber adds genuine value to your channel's metrics. With our gradual delivery and high retention rates, your subscriber count will grow naturally and safely.`,
     },
     watch_time: {
-      intro: `Need to boost your YouTube watch time? AYN YouTube offers high-retention watch time packages designed to help you reach YouTube's monetization requirements faster. Our service delivers real watch hours that count toward your Partner Program eligibility.`,
+      intro: `Need to boost your YouTube watch time? Growmediafans offers high-retention watch time packages designed to help you reach YouTube's monetization requirements faster. Our service delivers real watch hours that count toward your Partner Program eligibility.`,
       whyBuy: `Watch time is YouTube's most important ranking factor and a key requirement for monetization. You need 4,000 watch hours in the past 12 months to join the YouTube Partner Program. Building this organically can take years – our watch time service compresses that timeline significantly while maintaining quality and safety.`,
       ourService: `Our watch time service is specifically designed with monetization in mind. Every hour we deliver is from high-retention views that YouTube counts toward your total. We spread delivery naturally over time, ensuring your analytics look organic while helping you reach your monetization goals faster.`,
     },
     comments: {
-      intro: `Looking to boost engagement on your YouTube videos? AYN YouTube provides authentic-looking comments that spark conversations and encourage organic interaction. Our comments help make your videos appear more popular and engaging to new viewers.`,
+      intro: `Looking to boost engagement on your YouTube videos? Growmediafans provides authentic-looking comments that spark conversations and encourage organic interaction. Our comments help make your videos appear more popular and engaging to new viewers.`,
       whyBuy: `Comments are one of the strongest engagement signals on YouTube. Videos with active comment sections get promoted more by the algorithm and appear more trustworthy to viewers. Starting conversations on your videos encourages organic viewers to join in, creating a community around your content.`,
       ourService: `Our comment service delivers relevant, natural-looking comments that blend seamlessly with organic engagement. We offer both random relevant comments and custom comment options to match your content. All comments come from aged accounts with activity history, ensuring authenticity.`,
     },
     default: {
-      intro: `Boost your YouTube presence with AYN YouTube's premium services. We offer high-quality, safe solutions to help grow your channel and reach your goals faster.`,
+      intro: `Boost your YouTube presence with Growmediafans's premium services. We offer high-quality, safe solutions to help grow your channel and reach your goals faster.`,
       whyBuy: `Growing a YouTube channel organically takes time and consistent effort. Our services help accelerate this process by providing the initial momentum and social proof needed to attract organic growth. Think of it as a strategic investment in your channel's future.`,
-      ourService: `At AYN YouTube, quality and safety are our top priorities. We use only compliant methods that protect your channel while delivering real results. Our customer support team is available 24/7 to assist with any questions or concerns.`,
+      ourService: `At Growmediafans, quality and safety are our top priorities. We use only compliant methods that protect your channel while delivering real results. Our customer support team is available 24/7 to assist with any questions or concerns.`,
     },
   };
 
@@ -352,7 +352,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
               Ready to Grow Your YouTube Channel?
             </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Join over 1 million satisfied customers who have boosted their YouTube presence with AYN YouTube. 
+              Join over 1 million satisfied customers who have boosted their YouTube presence with Growmediafans. 
               Start seeing results today!
             </p>
             <motion.a

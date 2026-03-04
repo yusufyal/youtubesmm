@@ -14,8 +14,8 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ayn.yt'),
   title: {
-    default: 'AYN YouTube - Premium YouTube Growth Services',
-    template: '%s | AYN YouTube',
+    default: 'Growmediafans - Premium YouTube Growth Services',
+    template: '%s | Growmediafans',
   },
   description:
     'Boost your YouTube presence with premium views, subscribers, watch time, and engagement services. Fast delivery, real results, 24/7 support.',
@@ -27,14 +27,14 @@ export const metadata: Metadata = {
     'smm panel',
     'youtube marketing',
   ],
-  authors: [{ name: 'AYN YouTube' }],
-  creator: 'AYN YouTube',
+  authors: [{ name: 'Growmediafans' }],
+  creator: 'Growmediafans',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: process.env.NEXT_PUBLIC_SITE_URL,
-    siteName: 'AYN YouTube',
-    title: 'AYN YouTube - Premium YouTube Growth Services',
+    siteName: 'Growmediafans',
+    title: 'Growmediafans - Premium YouTube Growth Services',
     description:
       'Boost your YouTube presence with premium views, subscribers, watch time, and engagement services.',
     images: [
@@ -42,13 +42,13 @@ export const metadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'AYN YouTube',
+        alt: 'Growmediafans',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AYN YouTube - Premium YouTube Growth Services',
+    title: 'Growmediafans - Premium YouTube Growth Services',
     description:
       'Boost your YouTube presence with premium views, subscribers, watch time, and engagement services.',
     images: ['/og-image.jpg'],
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'AYN YouTube',
+  name: 'Growmediafans',
   url: process.env.NEXT_PUBLIC_SITE_URL,
   logo: `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`,
   sameAs: [

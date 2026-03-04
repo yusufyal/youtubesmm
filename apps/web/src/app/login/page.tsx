@@ -54,7 +54,7 @@ export default function LoginPage() {
               <Play className="h-5 w-5 text-white fill-white" />
             </div>
             <span className="text-xl font-bold text-gray-900 dark:text-white">
-              AYN<span className="text-gradient">YouTube</span>
+              Grow<span className="text-gradient">mediafans</span>
             </span>
           </Link>
 

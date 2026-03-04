@@ -177,7 +177,7 @@ export function ServiceComparison({ serviceName, colors }: ServiceComparisonProp
               Why Choose Us
             </motion.span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              AYN YouTube vs.{' '}
+              Growmediafans vs.{' '}
               <span className="text-gray-400">Other Providers</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -202,7 +202,7 @@ export function ServiceComparison({ serviceName, colors }: ServiceComparisonProp
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${colors.gradient} shadow-glow-sm`}
               >
                 <Star className="w-4 h-4 text-white" />
-                <span className="text-white font-semibold text-sm">AYN YouTube</span>
+                <span className="text-white font-semibold text-sm">Growmediafans</span>
               </motion.div>
             </div>
             <div className="text-center">
@@ -278,7 +278,7 @@ export function ServiceComparison({ serviceName, colors }: ServiceComparisonProp
                   </h3>
                   <p className="text-gray-600">
                     With over <span className="text-gray-900 font-semibold">1 million satisfied customers</span> and 
-                    a <span className="text-gray-900 font-semibold">5-year track record</span>, AYN YouTube is the trusted 
+                    a <span className="text-gray-900 font-semibold">5-year track record</span>, Growmediafans is the trusted 
                     choice for YouTube growth. Our commitment to quality and safety sets us apart from the competition.
                   </p>
                 </div>

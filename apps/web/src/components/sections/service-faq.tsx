@@ -24,7 +24,7 @@ const getFAQsForService = (serviceType: string, serviceName: string): FAQ[] => {
   const baseFAQs: FAQ[] = [
     {
       question: `Is it safe to buy YouTube ${serviceName.toLowerCase()}?`,
-      answer: `Yes, buying ${serviceName.toLowerCase()} from AYN YouTube is completely safe. We use organic delivery methods that comply with YouTube's terms of service. We never use bots or fake accounts that could harm your channel. Our gradual delivery system mimics natural growth patterns, ensuring your channel remains in good standing. We've served over 1 million customers without a single account suspension related to our services.`,
+      answer: `Yes, buying ${serviceName.toLowerCase()} from Growmediafans is completely safe. We use organic delivery methods that comply with YouTube's terms of service. We never use bots or fake accounts that could harm your channel. Our gradual delivery system mimics natural growth patterns, ensuring your channel remains in good standing. We've served over 1 million customers without a single account suspension related to our services.`,
     },
     {
       question: `Will I get banned for buying ${serviceName.toLowerCase()}?`,

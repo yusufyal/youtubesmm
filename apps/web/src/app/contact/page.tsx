@@ -8,9 +8,9 @@ import { Label } from '@/components/ui/label';
 export const metadata: Metadata = {
   title: 'Contact Us | 24/7 Customer Support',
   description:
-    'Contact AYN YouTube for fast and friendly support. Our team is available 24/7 to help with your YouTube growth needs and service inquiries. Get help today.',
+    'Contact Growmediafans for fast and friendly support. Our team is available 24/7 to help with your YouTube growth needs and service inquiries. Get help today.',
   openGraph: {
-    title: 'Contact Us | AYN YouTube',
+    title: 'Contact Us | Growmediafans',
     description: 'Contact our 24/7 support team.',
   },
 };

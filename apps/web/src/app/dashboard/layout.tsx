@@ -4,7 +4,7 @@ import { DashboardSidebar } from './dashboard-sidebar';
 export const metadata: Metadata = {
   title: {
     default: 'Dashboard',
-    template: '%s | Dashboard | AYN YouTube',
+    template: '%s | Dashboard | Growmediafans',
   },
   robots: {
     index: false,

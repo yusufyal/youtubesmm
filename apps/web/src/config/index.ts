@@ -1,6 +1,6 @@
 // Site Configuration
 export const siteConfig = {
-  name: 'AYN YouTube',
+  name: 'Growmediafans',
   description: 'Premium YouTube growth services - Views, Subscribers, Watch Time, and more',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ayn.yt',
   ogImage: '/og-image.jpg',
@@ -98,13 +98,13 @@ export const orderStatusConfig = {
 
 // SEO Configuration
 export const seoConfig = {
-  titleTemplate: '%s | AYN YouTube',
-  defaultTitle: 'AYN YouTube - Premium YouTube Growth Services',
+  titleTemplate: '%s | Growmediafans',
+  defaultTitle: 'Growmediafans - Premium YouTube Growth Services',
   defaultDescription: 'Boost your YouTube presence with premium views, subscribers, watch time, and engagement services. Fast delivery, real results, 24/7 support.',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'AYN YouTube',
+    siteName: 'Growmediafans',
   },
   twitter: {
     handle: '@aynyoutube',

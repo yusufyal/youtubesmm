@@ -46,7 +46,7 @@ const getFAQs = (serviceType: string, serviceName: string) => {
   const baseFAQs = [
     {
       question: `Is it safe to buy YouTube ${serviceName.toLowerCase()}?`,
-      answer: `Yes, buying ${serviceName.toLowerCase()} from AYN YouTube is completely safe. We use organic delivery methods that comply with YouTube's terms of service. We never use bots or fake accounts that could harm your channel. Our gradual delivery system mimics natural growth patterns, ensuring your channel remains in good standing.`,
+      answer: `Yes, buying ${serviceName.toLowerCase()} from Growmediafans is completely safe. We use organic delivery methods that comply with YouTube's terms of service. We never use bots or fake accounts that could harm your channel. Our gradual delivery system mimics natural growth patterns, ensuring your channel remains in good standing.`,
     },
     {
       question: `Will I get banned for buying ${serviceName.toLowerCase()}?`,
@@ -100,8 +100,8 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   const seoData = serviceSEOData[service.type] || {
-    title: `Buy ${service.name} - Premium Quality | AYN YouTube`,
-    description: `Buy ${service.name} from AYN YouTube. High-quality, safe, and fast delivery. No password required. 24/7 support. Money-back guarantee.`,
+    title: `Buy ${service.name} - Premium Quality | Growmediafans`,
+    description: `Buy ${service.name} from Growmediafans. High-quality, safe, and fast delivery. No password required. 24/7 support. Money-back guarantee.`,
     keywords: [`buy ${service.name.toLowerCase()}`, service.name.toLowerCase()],
   };
 
@@ -116,14 +116,14 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       description: service.meta_description || seoData.description,
       type: 'website',
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/services/${service.slug}`,
-      siteName: 'AYN YouTube',
+      siteName: 'Growmediafans',
       locale: 'en_US',
       images: [
         {
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/og/${service.slug}.png`,
           width: 1200,
           height: 630,
-          alt: `Buy ${service.name} - AYN YouTube`,
+          alt: `Buy ${service.name} - Growmediafans`,
         },
       ],
     },
@@ -176,7 +176,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     url: `${siteUrl}/services/${service.slug}`,
     brand: {
       '@type': 'Brand',
-      name: 'AYN YouTube',
+      name: 'Growmediafans',
     },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -201,7 +201,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
         seller: {
           '@type': 'Organization',
-          name: 'AYN YouTube',
+          name: 'Growmediafans',
         },
       })),
     },
@@ -280,7 +280,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   const organizationData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'AYN YouTube',
+    name: 'Growmediafans',
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     sameAs: [
@@ -304,7 +304,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     description: service.description || `Premium ${service.name} service for YouTube creators`,
     provider: {
       '@type': 'Organization',
-      name: 'AYN YouTube',
+      name: 'Growmediafans',
       url: siteUrl,
     },
     serviceType: 'Social Media Marketing',

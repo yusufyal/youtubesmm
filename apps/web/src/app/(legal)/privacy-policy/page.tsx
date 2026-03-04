@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Protect Your Data',
-  description: 'Read the AYN YouTube privacy policy to see how your data is collected and protected. Learn about your rights and how we keep your information secure today.',
+  description: 'Read the Growmediafans privacy policy to see how your data is collected and protected. Learn about your rights and how we keep your information secure today.',
 };
 
 async function getPageContent() {

@@ -81,7 +81,7 @@ export function Footer() {
                 <Play className="h-5 w-5 text-white fill-white" />
               </motion.div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
-                AYN<span className="text-gradient">YouTube</span>
+                Grow<span className="text-gradient">mediafans</span>
               </span>
             </Link>
             <p className="text-gray-600 dark:text-gray-400 max-w-sm">
@@ -191,7 +191,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-white/5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-500 dark:text-gray-500">
-              &copy; {new Date().getFullYear()} AYN YouTube. All rights reserved.
+              &copy; {new Date().getFullYear()} Growmediafans. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-gray-500">
               <span className="flex items-center gap-2">
