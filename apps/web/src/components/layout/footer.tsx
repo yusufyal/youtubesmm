@@ -6,22 +6,22 @@ import { Play, Mail, ArrowRight } from 'lucide-react';
 
 const footerLinks = {
   services: [
-    { name: 'Buy YouTube Views', href: '/services/youtube-views' },
-    { name: 'Buy YouTube Subscribers', href: '/services/youtube-subscribers' },
-    { name: 'Buy YouTube Watch Time', href: '/services/youtube-watch-time' },
-    { name: 'Buy YouTube Likes', href: '/services/youtube-likes' },
-    { name: 'Buy YouTube Comments', href: '/services/youtube-comments' },
+    { name: 'Buy YouTube Views', href: '/services/youtube-views' title: 'Buy YouTube Views'},
+    { name: 'Buy YouTube Subscribers', href: '/services/youtube-subscribers' title: 'Buy YouTube Subscribers'},
+    { name: 'Buy YouTube Watch Time', href: '/services/youtube-watch-time' title: 'Buy YouTube Watch Time'},
+    { name: 'Buy YouTube Likes', href: '/services/youtube-likes' title: 'Buy YouTube Likes'},
+    { name: 'Buy YouTube Comments', href: '/services/youtube-comments' title: 'Buy YouTube Comments'},
   ],
   company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'FAQ', href: '/faq' },
+    { name: 'About Us', href: '/about' title: 'About Us'},
+    { name: 'Blog', href: '/blog' title: 'Blog'},
+    { name: 'Contact', href: '/contact' title: 'Contact'},
+    { name: 'FAQ', href: '/faq' title: 'FAQ'},
   ],
   legal: [
-    { name: 'Terms of Service', href: '/terms-of-service' },
-    { name: 'Privacy Policy', href: '/privacy-policy' },
-    { name: 'Refund Policy', href: '/refund-policy' },
+    { name: 'Terms of Service', href: '/terms-of-service' title: 'Terms of Service'},
+    { name: 'Privacy Policy', href: '/privacy-policy' title: 'Privacy Policy'},
+    { name: 'Refund Policy', href: '/refund-policy' title: 'Refund Policy'},
   ],
 };
 
