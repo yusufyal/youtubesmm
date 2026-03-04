@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Read Before Ordering',
-  description: 'Read AYN YouTube's terms of service to understand rules, usage, and service conditions. Check your rights and responsibilities before ordering today.',
+  description: "Read AYN YouTube's terms of service to understand rules, usage, and service conditions. Check your rights and responsibilities before ordering today.",
 };
 
 async function getPageContent() {
