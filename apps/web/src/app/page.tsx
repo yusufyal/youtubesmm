@@ -10,9 +10,9 @@ import {
 } from '@/components/sections';
 
 export const metadata: Metadata = {
-  title: 'AYN YouTube - Premium YouTube Growth Services',
+  title: 'Get YouTube Followers & Grow Your YouTube Channel Fast',
   description:
-    'Boost your YouTube channel with premium growth services. Get real views, subscribers, watch time, and comments. Trusted by 50,000+ creators.',
+    'Get YouTube followers and grow your YouTube channel faster. Buy YouTube followers safely with a trusted service. Start boosting your channel today!',
   openGraph: {
     title: 'AYN YouTube - Premium YouTube Growth Services',
     description:
