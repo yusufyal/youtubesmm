@@ -5,9 +5,9 @@ import { ServicesPageClient } from './services-client';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'YouTube Growth Services | AYN YouTube',
+  title: 'Premium YouTube Growth Services',
   description:
-    'Browse our premium YouTube growth services including views, subscribers, watch time, comments, and likes. Fast delivery and real results.',
+    'Browse premium YouTube growth services including views, subscribers, watch time, comments, and likes. Fast delivery, real results, and trusted support today.',
   openGraph: {
     title: 'YouTube Growth Services | AYN YouTube',
     description: 'Premium YouTube growth services with fast delivery and real results.',
