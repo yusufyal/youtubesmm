@@ -6,9 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
+  title: 'Contact Us | 24/7 Customer Support',
   description:
-    'Get in touch with our support team. We are available 24/7 to help with your YouTube growth needs.',
+    'Contact AYN YouTube for fast and friendly support. Our team is available 24/7 to help with your YouTube growth needs and service inquiries. Get help today.',
   openGraph: {
     title: 'Contact Us | AYN YouTube',
     description: 'Contact our 24/7 support team.',
