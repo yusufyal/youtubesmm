@@ -94,6 +94,45 @@ class ApiClient {
     return data.data ?? data;
   }
 
+  private async requestPaginated<T>(
+    endpoint: string,
+    options: RequestInit = {}
+  ): Promise<PaginatedResponse<T>> {
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      ...options.headers,
+    };
+
+    if (this.token) {
+      (headers as Record<string, string>)['Authorization'] = `Bearer ${this.token}`;
+    }
+
+    const xsrfToken = this.getXsrfToken();
+    if (xsrfToken) {
+      (headers as Record<string, string>)['X-XSRF-TOKEN'] = xsrfToken;
+    }
+
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      ...options,
+      headers,
+      credentials: 'include',
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      const error = json as ApiError;
+      throw new Error(error.message || 'An error occurred');
+    }
+
+    return {
+      data: json.data ?? [],
+      meta: json.meta,
+      links: json.links,
+    };
+  }
+
   // Public endpoints
   async getServices(): Promise<Service[]> {
     return this.request<Service[]>('/public/services');
@@ -108,7 +147,7 @@ class ApiClient {
     if (params?.page) searchParams.set('page', params.page.toString());
     if (params?.category) searchParams.set('category', params.category);
     const query = searchParams.toString() ? `?${searchParams.toString()}` : '';
-    return this.request<PaginatedResponse<Post>>(`/public/posts${query}`);
+    return this.requestPaginated<Post>(`/public/posts${query}`);
   }
 
   async getPost(slug: string): Promise<Post> {
@@ -213,7 +252,7 @@ class ApiClient {
   // Customer endpoints
   async getMyOrders(page?: number): Promise<PaginatedResponse<Order>> {
     const query = page ? `?page=${page}` : '';
-    return this.request<PaginatedResponse<Order>>(`/my/orders${query}`);
+    return this.requestPaginated<Order>(`/my/orders${query}`);
   }
 
   async getMyOrder(id: number): Promise<Order> {
