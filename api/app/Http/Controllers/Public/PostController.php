@@ -15,7 +15,7 @@ class PostController extends Controller
         $perPage = min($request->get('per_page', 12), 50);
         $cacheKey = 'public.posts.' . md5($request->fullUrl());
         
-        $posts = Cache::remember($cacheKey, 1800, function () use ($request, $perPage) {
+        $posts = Cache::tags(['posts'])->remember($cacheKey, 1800, function () use ($request, $perPage) {
             $query = Post::with(['category', 'author:id,name'])
                 ->published()
                 ->ordered();
@@ -46,7 +46,7 @@ class PostController extends Controller
 
         $cacheKey = "public.post.{$post->slug}";
         
-        $postData = Cache::remember($cacheKey, 1800, function () use ($post) {
+        $postData = Cache::tags(['posts'])->remember($cacheKey, 1800, function () use ($post) {
             return $post->load(['category', 'tags', 'author:id,name']);
         });
 

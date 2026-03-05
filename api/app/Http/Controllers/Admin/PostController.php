@@ -76,7 +76,7 @@ class PostController extends Controller
         }
 
         AuditLog::log('created', $post, null, $post->toArray());
-        Cache::forget('public.posts.*');
+        Cache::tags(['posts'])->flush();
 
         return $this->successResponse($post->load(['category', 'tags']), 'Post created successfully', 201);
     }
@@ -120,8 +120,7 @@ class PostController extends Controller
         }
 
         AuditLog::log('updated', $post, $oldValues, $post->toArray());
-        Cache::forget("public.post.{$post->slug}");
-        Cache::forget('public.posts.*');
+        Cache::tags(['posts'])->flush();
 
         return $this->successResponse($post->load(['category', 'tags']), 'Post updated successfully');
     }
@@ -133,7 +132,7 @@ class PostController extends Controller
         $post->tags()->detach();
         $post->delete();
         
-        Cache::forget('public.posts.*');
+        Cache::tags(['posts'])->flush();
 
         return $this->successResponse(null, 'Post deleted successfully');
     }
