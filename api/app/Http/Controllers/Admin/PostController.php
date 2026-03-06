@@ -7,7 +7,6 @@ use App\Models\AuditLog;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -76,7 +75,6 @@ class PostController extends Controller
         }
 
         AuditLog::log('created', $post, null, $post->toArray());
-        Cache::tags(['posts'])->flush();
 
         return $this->successResponse($post->load(['category', 'tags']), 'Post created successfully', 201);
     }
@@ -120,7 +118,6 @@ class PostController extends Controller
         }
 
         AuditLog::log('updated', $post, $oldValues, $post->toArray());
-        Cache::tags(['posts'])->flush();
 
         return $this->successResponse($post->load(['category', 'tags']), 'Post updated successfully');
     }
@@ -131,8 +128,6 @@ class PostController extends Controller
         
         $post->tags()->detach();
         $post->delete();
-        
-        Cache::tags(['posts'])->flush();
 
         return $this->successResponse(null, 'Post deleted successfully');
     }
