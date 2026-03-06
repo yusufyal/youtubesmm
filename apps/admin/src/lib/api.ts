@@ -327,15 +327,15 @@ class AdminApiClient {
     });
   }
 
-  async updatePost(id: number, data: Partial<Post>): Promise<Post> {
-    return this.request(`/admin/posts/${id}`, {
+  async updatePost(slug: string, data: Partial<Post>): Promise<Post> {
+    return this.request(`/admin/posts/${slug}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
   }
 
-  async deletePost(id: number): Promise<void> {
-    return this.request(`/admin/posts/${id}`, { method: 'DELETE' });
+  async deletePost(slug: string): Promise<void> {
+    return this.request(`/admin/posts/${slug}`, { method: 'DELETE' });
   }
 
   // FAQs

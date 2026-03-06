@@ -63,6 +63,11 @@ class Post extends Model
         return $query->orderByDesc('published_at');
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function isPublished(): bool
     {
         return $this->status === 'published' && $this->published_at && $this->published_at->lte(now());

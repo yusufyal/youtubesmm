@@ -107,7 +107,7 @@ export default function PostsPage() {
 
     try {
       if (editingPost) {
-        await adminApi.updatePost(editingPost.id, formData as any);
+        await adminApi.updatePost(editingPost.slug, formData as any);
       } else {
         await adminApi.createPost(formData as any);
       }
@@ -122,11 +122,11 @@ export default function PostsPage() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (slug: string) => {
     if (!confirm('Are you sure you want to delete this post?')) return;
 
     try {
-      await adminApi.deletePost(id);
+      await adminApi.deletePost(slug);
       fetchPosts();
     } catch (error) {
       console.error('Failed to delete post:', error);
@@ -229,7 +229,7 @@ export default function PostsPage() {
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => handleDelete(post.id)}
+                            onClick={() => handleDelete(post.slug)}
                           >
                             <Trash2 className="h-4 w-4 text-destructive" />
                           </Button>
