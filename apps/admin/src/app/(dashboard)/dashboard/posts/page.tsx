@@ -39,6 +39,7 @@ export default function PostsPage() {
   const [editingPost, setEditingPost] = useState<Post | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Form state
   const [formData, setFormData] = useState({
@@ -69,6 +70,7 @@ export default function PostsPage() {
 
   const openCreateDialog = () => {
     setEditingPost(null);
+    setErrorMessage('');
     setFormData({
       title: '',
       slug: '',
@@ -84,6 +86,7 @@ export default function PostsPage() {
 
   const openEditDialog = (post: Post) => {
     setEditingPost(post);
+    setErrorMessage('');
     setFormData({
       title: post.title || '',
       slug: post.slug || '',
@@ -100,6 +103,7 @@ export default function PostsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
 
     try {
       if (editingPost) {
@@ -109,7 +113,9 @@ export default function PostsPage() {
       }
       setIsDialogOpen(false);
       fetchPosts();
-    } catch (error) {
+    } catch (error: any) {
+      const msg = error?.message || 'Failed to save post';
+      setErrorMessage(msg);
       console.error('Failed to save post:', error);
     } finally {
       setIsSubmitting(false);
@@ -249,6 +255,11 @@ export default function PostsPage() {
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {errorMessage && (
+              <div className="rounded-md bg-red-50 border border-red-200 p-3 text-sm text-red-700">
+                {errorMessage}
+              </div>
+            )}
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="title">Title</Label>
