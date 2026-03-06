@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, Eye, Search } from 'lucide-react';
+import { Plus, Edit2, Trash2, Eye, Search, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -133,6 +133,16 @@ export default function PostsPage() {
     }
   };
 
+  const handlePublish = async (post: Post) => {
+    try {
+      await adminApi.updatePost(post.slug, { status: 'published' } as any);
+      fetchPosts();
+    } catch (error: any) {
+      alert(`Failed to publish: ${error?.message || 'Unknown error'}`);
+      console.error('Failed to publish post:', error);
+    }
+  };
+
   const generateSlug = (title: string) => {
     return title
       .toLowerCase()
@@ -219,6 +229,16 @@ export default function PostsPage() {
                       </td>
                       <td className="py-4">
                         <div className="flex gap-2">
+                          {post.status !== 'published' && (
+                            <Button
+                              size="sm"
+                              className="bg-green-600 hover:bg-green-700 text-white"
+                              onClick={() => handlePublish(post)}
+                            >
+                              <CheckCircle className="mr-1 h-4 w-4" />
+                              Publish
+                            </Button>
+                          )}
                           <Button
                             variant="outline"
                             size="sm"
