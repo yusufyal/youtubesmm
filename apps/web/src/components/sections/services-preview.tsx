@@ -2,10 +2,19 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Eye, Users, Clock, MessageCircle, ThumbsUp } from 'lucide-react';
+import { ArrowRight, Eye, Users, Clock, MessageCircle, ThumbsUp, UserPlus } from 'lucide-react';
 import { ScrollReveal } from '../animations/scroll-reveal';
 
 const services = [
+  {
+    icon: UserPlus,
+    name: 'Buy YouTube Followers',
+    description: 'Increase your social proof instantly. When you buy followers YouTube, your channel looks more authoritative, trustworthy, and attractive to new viewers.',
+    color: 'from-pink-500 to-rose-500',
+    glow: 'rgba(236, 72, 153, 0.15)',
+    href: '/services/youtube-subscribers',
+    price: 4.99,
+  },
   {
     icon: Eye,
     name: 'Buy YouTube Views',
@@ -82,7 +91,7 @@ export function ServicesPreviewSection() {
         </ScrollReveal>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {services.map((service, index) => (
             <motion.div
               key={service.name}

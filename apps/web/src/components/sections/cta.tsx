@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, CheckCircle } from 'lucide-react';
 import { FloatingElement } from '../animations/floating';
 
 export function CTASection() {
@@ -82,11 +82,32 @@ export function CTASection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl mx-auto"
+            className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto"
           >
-            If you're serious about scaling your channel, now is the time to buy followers YouTube with Grow Media Fans.
-            Boost your engagement. Reach your monetization goals faster.
+            If you&apos;re serious about scaling your channel, now is the time to buy followers YouTube with Grow Media Fans.
           </motion.p>
+
+          {/* Bullet points */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.25 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-10 text-gray-600 dark:text-gray-400"
+          >
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-neon-pink" />
+              <span>Start growing today</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-neon-pink" />
+              <span>Boost your engagement</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-neon-pink" />
+              <span>Reach monetization goals faster</span>
+            </div>
+          </motion.div>
 
           {/* CTA Button */}
           <motion.div

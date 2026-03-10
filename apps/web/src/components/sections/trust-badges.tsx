@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, CreditCard, Clock, Headphones, RefreshCcw, Lock } from 'lucide-react';
+import { Shield, CreditCard, Clock, Headphones, RefreshCcw, Lock, Users } from 'lucide-react';
 import { ScrollReveal } from '../animations/scroll-reveal';
 
 const badges = [
@@ -31,9 +31,9 @@ const badges = [
     description: 'We never ask for your password. Your login credentials are never needed.',
   },
   {
-    icon: Lock,
-    title: 'Privacy First',
-    description: 'Your data is never shared with third parties. Complete account safety guaranteed.',
+    icon: Users,
+    title: 'Designed for Creators & Businesses',
+    description: 'We focus on helping your channel grow in a way that enhances credibility and long-term performance.',
   },
 ];
 

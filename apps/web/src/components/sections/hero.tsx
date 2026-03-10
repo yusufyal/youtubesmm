@@ -125,16 +125,37 @@ export function HeroSection() {
             </span>
           </motion.h1>
 
+          {/* Secondary Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="text-xl sm:text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4"
+          >
+            Buy Followers YouTube Safely, Quickly &amp; Effectively
+          </motion.h2>
+
           {/* Subheadline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10"
+            className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-4"
           >
             Looking to buy followers YouTube and accelerate your channel growth?
-            Grow Media Fans is your trusted partner for fast, reliable YouTube growth services.
-            Buy YouTube views, subscribers, watch time, likes, and comments to boost visibility and credibility.
+            Welcome to Grow Media Fans — your trusted partner for fast, reliable, and strategic YouTube growth services.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="text-base sm:text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto mb-10"
+          >
+            Whether you&apos;re a content creator, influencer, brand, or digital marketer, we help you boost
+            visibility, build credibility, and attract more organic engagement. Growing on YouTube takes
+            time — but with the right momentum, your channel can scale faster and rank higher.
+            At Grow Media Fans, we make growth simple.
           </motion.p>
 
           {/* CTA Buttons */}

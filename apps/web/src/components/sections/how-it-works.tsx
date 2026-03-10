@@ -48,7 +48,7 @@ export function HowItWorksSection() {
             How It <span className="text-gradient">Works</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Getting started is easy. Just four simple steps to accelerate your growth.
+            Growing your YouTube channel with Grow Media Fans is easy
           </p>
         </ScrollReveal>
 
@@ -95,6 +95,16 @@ export function HowItWorksSection() {
               </motion.div>
             ))}
           </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="text-center mt-12 text-gray-500 font-medium"
+          >
+            No complicated steps. No technical knowledge required.
+          </motion.p>
         </div>
       </div>
     </section>

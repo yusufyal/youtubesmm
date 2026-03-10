@@ -6,6 +6,7 @@ import {
   HowItWorksSection,
   TrustBadgesSection,
   WhoIsThisForSection,
+  BuildAuthoritySection,
   TestimonialsSection,
   HomeFAQSection,
   CTASection,
@@ -46,6 +47,9 @@ export default function HomePage() {
 
       {/* Who Is This For */}
       <WhoIsThisForSection />
+
+      {/* Build Authority */}
+      <BuildAuthoritySection />
 
       {/* Testimonials */}
       <TestimonialsSection />

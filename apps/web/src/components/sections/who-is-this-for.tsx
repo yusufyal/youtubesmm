@@ -94,6 +94,17 @@ export function WhoIsThisForSection() {
             </motion.div>
           ))}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="text-center mt-12 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+        >
+          If you want to grow faster and stand out in a competitive space,
+          our services help give your channel the boost it needs.
+        </motion.p>
       </div>
     </section>
   );
