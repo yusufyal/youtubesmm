@@ -5,14 +5,16 @@ import {
   ServicesPreviewSection,
   HowItWorksSection,
   TrustBadgesSection,
+  WhoIsThisForSection,
   TestimonialsSection,
+  HomeFAQSection,
   CTASection,
 } from '@/components/sections';
 
 export const metadata: Metadata = {
-  title: 'Get YouTube Followers & Grow Your YouTube Channel Fast',
+  title: 'Buy Followers YouTube & Grow Faster | Grow Media Fans',
   description:
-    'Get YouTube followers and grow your YouTube channel faster. Buy YouTube followers safely with a trusted service. Start boosting your channel today!',
+    'Buy followers YouTube safely and effectively with Grow Media Fans. Get YouTube views, subscribers, watch time, likes, and comments. Fast delivery, 24/7 support.',
   alternates: {
     canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://growmediafans.com'}/`,
   },
@@ -39,11 +41,17 @@ export default function HomePage() {
       {/* How It Works */}
       <HowItWorksSection />
 
-      {/* Trust Badges */}
+      {/* Trust Badges / Why Choose Us */}
       <TrustBadgesSection />
+
+      {/* Who Is This For */}
+      <WhoIsThisForSection />
 
       {/* Testimonials */}
       <TestimonialsSection />
+
+      {/* Homepage FAQ */}
+      <HomeFAQSection />
 
       {/* CTA Section */}
       <CTASection />

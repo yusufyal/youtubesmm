@@ -7,26 +7,26 @@ import { ScrollReveal } from '../animations/scroll-reveal';
 const steps = [
   {
     icon: Search,
-    title: 'Choose Service',
-    description: 'Browse our services and select the one that fits your needs.',
+    title: 'Select Your Service',
+    description: 'Choose to buy followers YouTube, views, subscribers, watch time, likes, or comments.',
     color: 'from-red-500 to-pink-500',
   },
   {
     icon: ShoppingCart,
-    title: 'Place Order',
-    description: 'Enter your video URL, select quantity, and complete checkout.',
+    title: 'Enter Your Link',
+    description: 'Provide your channel or video link. No password required.',
     color: 'from-purple-500 to-indigo-500',
   },
   {
     icon: Rocket,
-    title: 'We Deliver',
-    description: 'Orders start processing within minutes of payment.',
+    title: 'Complete Checkout',
+    description: 'Safe and smooth transaction process with secure payment.',
     color: 'from-cyan-500 to-blue-500',
   },
   {
     icon: CheckCircle,
-    title: 'Watch Growth',
-    description: 'See your channel grow with real, high-quality engagement.',
+    title: 'Watch Your Channel Grow',
+    description: 'Fast delivery begins immediately. No complicated steps required.',
     color: 'from-green-500 to-emerald-500',
   },
 ];

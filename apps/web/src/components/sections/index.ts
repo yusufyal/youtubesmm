@@ -5,6 +5,8 @@ export * from './trust-badges';
 export * from './testimonials';
 export * from './cta';
 export * from './how-it-works';
+export * from './who-is-this-for';
+export * from './home-faq';
 export * from './service-benefits';
 export * from './service-how-it-works';
 export * from './service-faq';

@@ -84,7 +84,7 @@ export function HeroSection() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-pink" />
             </span>
             <span className="text-sm text-gray-600 dark:text-gray-300">
-              Trusted by 50,000+ content creators
+              Trusted by 50,000+ creators worldwide
             </span>
           </motion.div>
 
@@ -95,10 +95,10 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
           >
-            <span className="text-gray-900 dark:text-white">Grow Your </span>
+            <span className="text-gray-900 dark:text-white">Buy Followers </span>
             <span className="text-gradient">YouTube</span>
             <br />
-            <span className="text-gray-900 dark:text-white">Channel </span>
+            <span className="text-gray-900 dark:text-white">& Grow </span>
             <span className="relative inline-block">
               <span className="text-gradient">Faster</span>
               <motion.svg
@@ -132,8 +132,9 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10"
           >
-            Premium YouTube growth services with real engagement. Get more views,
-            subscribers, watch time, and comments to accelerate your success.
+            Looking to buy followers YouTube and accelerate your channel growth?
+            Grow Media Fans is your trusted partner for fast, reliable YouTube growth services.
+            Buy YouTube views, subscribers, watch time, likes, and comments to boost visibility and credibility.
           </motion.p>
 
           {/* CTA Buttons */}

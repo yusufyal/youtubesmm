@@ -7,33 +7,33 @@ import { ScrollReveal } from '../animations/scroll-reveal';
 const badges = [
   {
     icon: Shield,
-    title: 'Safe & Secure',
-    description: 'Your channel is safe. We never ask for passwords.',
+    title: 'Fast & Secure Delivery',
+    description: 'When you buy followers YouTube from Grow Media Fans, delivery starts immediately with realistic growth patterns.',
   },
   {
     icon: CreditCard,
-    title: 'Secure Payment',
-    description: 'SSL encrypted payments with multiple options.',
+    title: 'Simple Ordering System',
+    description: 'Safe and smooth checkout process with secure, SSL-encrypted payments.',
   },
   {
     icon: Clock,
-    title: 'Fast Delivery',
-    description: 'Orders start processing within minutes.',
+    title: 'Realistic Growth Patterns',
+    description: 'Natural-looking growth designed to enhance credibility and long-term channel performance.',
   },
   {
     icon: Headphones,
-    title: '24/7 Support',
-    description: 'Expert help available around the clock.',
+    title: 'Dedicated Customer Support',
+    description: 'Expert help available 24/7. We are committed to helping creators and businesses grow.',
   },
   {
     icon: RefreshCcw,
-    title: 'Refill Guarantee',
-    description: 'Free refills if counts drop within warranty.',
+    title: '100% Confidential Process',
+    description: 'We never ask for your password. Your login credentials are never needed.',
   },
   {
     icon: Lock,
     title: 'Privacy First',
-    description: 'Your data is never shared with third parties.',
+    description: 'Your data is never shared with third parties. Complete account safety guaranteed.',
   },
 ];
 
@@ -46,10 +46,10 @@ export function TrustBadgesSection() {
       <div className="container relative z-10 px-4">
         <ScrollReveal className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Why Choose <span className="text-gradient">Us</span>
+            Why Choose <span className="text-gradient">Grow Media Fans</span>?
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            We're committed to providing the best service for your YouTube growth
+            When you choose to buy followers YouTube from Grow Media Fans, you get more than just numbers
           </p>
         </ScrollReveal>
 

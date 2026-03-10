@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Eye, Users, Clock, MessageCircle } from 'lucide-react';
+import { ArrowRight, Eye, Users, Clock, MessageCircle, ThumbsUp } from 'lucide-react';
 import { ScrollReveal } from '../animations/scroll-reveal';
 
 const services = [
   {
     icon: Eye,
-    name: 'YouTube Views',
-    description: 'Boost your video visibility with real, high-retention views that help your content rank higher.',
+    name: 'Buy YouTube Views',
+    description: 'Boost video visibility and improve algorithm performance. More views signal relevance and increase your chances of ranking higher in search.',
     color: 'from-red-500 to-pink-500',
     glow: 'rgba(239, 68, 68, 0.15)',
     href: '/services/youtube-views',
@@ -17,8 +17,8 @@ const services = [
   },
   {
     icon: Users,
-    name: 'Subscribers',
-    description: 'Grow your channel with real subscribers who are genuinely interested in your content.',
+    name: 'Buy YouTube Subscribers',
+    description: 'Strengthen your channel foundation with consistent subscriber growth. A higher subscriber count improves credibility and brand perception.',
     color: 'from-purple-500 to-indigo-500',
     glow: 'rgba(139, 92, 246, 0.15)',
     href: '/services/youtube-subscribers',
@@ -26,17 +26,26 @@ const services = [
   },
   {
     icon: Clock,
-    name: 'Watch Time',
-    description: 'Increase your watch hours to meet monetization requirements and improve algorithm ranking.',
+    name: 'Buy YouTube Watch Time',
+    description: 'Need to reach monetization requirements faster? Buying watch time helps improve retention metrics and channel performance.',
     color: 'from-cyan-500 to-blue-500',
     glow: 'rgba(6, 182, 212, 0.15)',
     href: '/services/youtube-watch-time',
     price: 9.99,
   },
   {
+    icon: ThumbsUp,
+    name: 'Buy YouTube Likes',
+    description: 'Engagement matters. Likes increase trust and help your videos perform better in YouTube\'s algorithm.',
+    color: 'from-amber-500 to-orange-500',
+    glow: 'rgba(245, 158, 11, 0.15)',
+    href: '/services/youtube-likes',
+    price: 1.99,
+  },
+  {
     icon: MessageCircle,
-    name: 'Comments',
-    description: 'Boost engagement with relevant, authentic comments that spark conversations.',
+    name: 'Buy YouTube Comments',
+    description: 'Build social proof and engagement signals that encourage real viewers to interact with your content.',
     color: 'from-green-500 to-emerald-500',
     glow: 'rgba(34, 197, 94, 0.15)',
     href: '/services/youtube-comments',
@@ -65,15 +74,15 @@ export function ServicesPreviewSection() {
             Our Services
           </motion.span>
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Everything You Need to <span className="text-gradient">Grow</span>
+            Complete YouTube Growth Services <span className="text-gradient">Under One Roof</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-            Premium YouTube growth services designed to help your channel reach its full potential
+            We don't just help you buy followers — we provide everything you need to strengthen your channel authority
           </p>
         </ScrollReveal>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
           {services.map((service, index) => (
             <motion.div
               key={service.name}

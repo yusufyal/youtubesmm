@@ -73,9 +73,7 @@ export function CTASection() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
           >
-            Ready to <span className="text-gradient">Supercharge</span>
-            <br />
-            Your YouTube Growth?
+            Ready to <span className="text-gradient">Grow</span>?
           </motion.h2>
 
           {/* Description */}
@@ -86,8 +84,8 @@ export function CTASection() {
             transition={{ delay: 0.2 }}
             className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl mx-auto"
           >
-            Join thousands of successful creators. Get started today with our
-            premium growth services and see results within hours.
+            If you're serious about scaling your channel, now is the time to buy followers YouTube with Grow Media Fans.
+            Boost your engagement. Reach your monetization goals faster.
           </motion.p>
 
           {/* CTA Button */}
@@ -143,7 +141,7 @@ export function CTASection() {
             transition={{ delay: 0.5 }}
             className="mt-6 text-sm text-gray-500 dark:text-gray-500"
           >
-            No credit card required • Cancel anytime • 24/7 Support
+            Grow Media Fans — Your Partner in YouTube Growth
           </motion.p>
         </div>
       </div>
