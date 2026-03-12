@@ -115,25 +115,26 @@ export default function ServicesPage() {
 
     try {
       if (editingService) {
-        await adminApi.updateService(editingService.id, formData as any);
+        await adminApi.updateService(editingService.slug, formData as any);
       } else {
         await adminApi.createService(formData as any);
       }
       setIsDialogOpen(false);
       fetchServices();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to save service:', error);
+      alert(error.message || 'Failed to save service');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (service: Service) => {
     if (!confirm('Are you sure you want to delete this service? This will also delete all associated packages.')) return;
     
     try {
-      await adminApi.deleteService(id);
-      setServices(services.filter((s) => s.id !== id));
+      await adminApi.deleteService(service.slug);
+      setServices(services.filter((s) => s.id !== service.id));
     } catch (error: any) {
       alert(error.message || 'Failed to delete service');
     }
@@ -218,7 +219,7 @@ export default function ServicesPage() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => handleDelete(service.id)}
+                    onClick={() => handleDelete(service)}
                   >
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>

@@ -184,8 +184,8 @@ class AdminApiClient {
     return this.request('/admin/services');
   }
 
-  async getService(id: number): Promise<Service> {
-    return this.request(`/admin/services/${id}`);
+  async getService(slug: string): Promise<Service> {
+    return this.request(`/admin/services/${slug}`);
   }
 
   async createService(data: Partial<Service>): Promise<Service> {
@@ -195,15 +195,15 @@ class AdminApiClient {
     });
   }
 
-  async updateService(id: number, data: Partial<Service>): Promise<Service> {
-    return this.request(`/admin/services/${id}`, {
+  async updateService(slug: string, data: Partial<Service>): Promise<Service> {
+    return this.request(`/admin/services/${slug}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
   }
 
-  async deleteService(id: number): Promise<void> {
-    return this.request(`/admin/services/${id}`, { method: 'DELETE' });
+  async deleteService(slug: string): Promise<void> {
+    return this.request(`/admin/services/${slug}`, { method: 'DELETE' });
   }
 
   // Packages
