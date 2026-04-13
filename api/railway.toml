@@ -1,19 +1,6 @@
 [build]
 builder = "nixpacks"
 
-[build.nixpacksPlan.phases.setup]
-nixPkgs = ["php83", "php83Packages.composer", "php83Extensions.pdo", "php83Extensions.pdo_mysql", "php83Extensions.redis", "php83Extensions.mbstring", "php83Extensions.xml", "php83Extensions.curl", "php83Extensions.zip", "php83Extensions.bcmath", "php83Extensions.tokenizer", "php83Extensions.fileinfo", "php83Extensions.dom", "php83Extensions.ctype"]
-
-[build.nixpacksPlan.phases.install]
-cmds = [
-    "composer install --no-dev --optimize-autoloader --no-interaction",
-    "mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache",
-    "chmod -R 775 storage bootstrap/cache"
-]
-
-[build.nixpacksPlan.phases.build]
-cmds = []
-
 [deploy]
 startCommand = "php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
 restartPolicyType = "on_failure"

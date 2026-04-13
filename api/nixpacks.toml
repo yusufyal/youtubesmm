@@ -1,0 +1,16 @@
+# Laravel API — explicit Nixpacks plan so builds never inherit the monorepo-root
+# Node-only nixpacks config (see nixpacks.node-monorepo.toml at repo root).
+# Railway: set this service Root Directory to `api`.
+
+[phases.setup]
+nixPkgs = ["php83", "php83Packages.composer", "php83Extensions.pdo", "php83Extensions.pdo_mysql", "php83Extensions.redis", "php83Extensions.mbstring", "php83Extensions.xml", "php83Extensions.curl", "php83Extensions.zip", "php83Extensions.bcmath", "php83Extensions.tokenizer", "php83Extensions.fileinfo", "php83Extensions.dom", "php83Extensions.ctype"]
+
+[phases.install]
+cmds = [
+    "composer install --no-dev --optimize-autoloader --no-interaction",
+    "mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache",
+    "chmod -R 775 storage bootstrap/cache",
+]
+
+[phases.build]
+cmds = []

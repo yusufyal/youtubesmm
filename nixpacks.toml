@@ -1,3 +1,0 @@
-[phases.setup]
-nixPkgs = ["nodejs_20"]
-cmds = ["corepack enable", "corepack prepare pnpm@9.0.0 --activate"]

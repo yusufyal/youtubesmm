@@ -1,0 +1,7 @@
+# Not auto-loaded by Nixpacks (must be named exactly "nixpacks.toml" at build root).
+# Preserved for reference: Node/pnpm tooling if you ever need a root-level Node build.
+# The Laravel API uses api/nixpacks.toml with Root Directory = api (see README).
+
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+cmds = ["corepack enable", "corepack prepare pnpm@9.0.0 --activate"]
