@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import api from '@/lib/api';
 
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ayn.yt';
 
@@ -82,12 +84,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Failed to fetch services for sitemap:', error);
   }
 
-  // Dynamic blog posts
+  // Dynamic blog posts (fetch all pages)
   let blogPages: MetadataRoute.Sitemap = [];
   try {
-    const response = await api.getPosts({ page: 1 });
-    const posts = response?.data ?? [];
-    blogPages = posts.map((post: any) => ({
+    let allPosts: any[] = [];
+    let page = 1;
+    let hasMore = true;
+    while (hasMore) {
+      const response = await api.getPosts({ page, per_page: 50 });
+      const posts = response?.data ?? [];
+      allPosts.push(...posts);
+      hasMore = posts.length === 50;
+      page++;
+    }
+    blogPages = allPosts.map((post: any) => ({
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: new Date(post.updated_at),
       changeFrequency: 'monthly' as const,

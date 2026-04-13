@@ -142,10 +142,11 @@ class ApiClient {
     return this.request<Service>(`/public/services/${slug}`);
   }
 
-  async getPosts(params?: { page?: number; category?: string }): Promise<PaginatedResponse<Post>> {
+  async getPosts(params?: { page?: number; category?: string; per_page?: number }): Promise<PaginatedResponse<Post>> {
     const searchParams = new URLSearchParams();
     if (params?.page) searchParams.set('page', params.page.toString());
     if (params?.category) searchParams.set('category', params.category);
+    if (params?.per_page) searchParams.set('per_page', params.per_page.toString());
     const query = searchParams.toString() ? `?${searchParams.toString()}` : '';
     return this.requestPaginated<Post>(`/public/posts${query}`);
   }
