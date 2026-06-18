@@ -39,11 +39,6 @@ export default function LoginPage() {
     }
   };
 
-  const fillDemoCredentials = () => {
-    setEmail('admin@ayn.yt');
-    setPassword('password');
-  };
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
       {/* Background Pattern */}
@@ -64,7 +59,7 @@ export default function LoginPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="admin@ayn.yt"
+                placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-pink-500 focus:ring-pink-500/20"
@@ -117,30 +112,6 @@ export default function LoginPage() {
               )}
             </Button>
           </form>
-
-          {/* Demo Credentials */}
-          <div className="mt-6 pt-6 border-t border-slate-800">
-            <div className="text-center">
-              <p className="text-sm text-slate-500 mb-3">Demo Credentials</p>
-              <button
-                type="button"
-                onClick={fillDemoCredentials}
-                className="text-sm text-pink-400 hover:text-pink-300 transition-colors underline underline-offset-4"
-              >
-                Click to fill: admin@ayn.yt / password
-              </button>
-            </div>
-          </div>
-
-          {/* Setup Instructions */}
-          <div className="mt-4 p-4 rounded-lg bg-slate-800/50 border border-slate-700">
-            <p className="text-xs text-slate-400 leading-relaxed">
-              <strong className="text-slate-300">First time?</strong> Make sure to run database migrations and seeders:
-            </p>
-            <code className="block mt-2 text-xs text-pink-400 font-mono bg-slate-900/50 p-2 rounded">
-              cd api && php artisan migrate --seed
-            </code>
-          </div>
         </CardContent>
       </Card>
     </div>
